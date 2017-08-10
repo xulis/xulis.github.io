@@ -1,0 +1,747 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="git," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="1、下载安装git-2.7.0 12345678910111213141516&amp;lt;!-- more --&amp;gt;wget https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gzyum install gcc tar xvf git-2.7.0.tar.gz;cd git-2.7.0make configuremkdir /usr">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git服务搭建">
+<meta property="og:url" content="http://xulin.me/2016/07/15/2016-07-15-git-service/index.html">
+<meta property="og:site_name" content="岦">
+<meta property="og:description" content="1、下载安装git-2.7.0 12345678910111213141516&amp;lt;!-- more --&amp;gt;wget https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gzyum install gcc tar xvf git-2.7.0.tar.gz;cd git-2.7.0make configuremkdir /usr">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-10T15:36:31.691Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git服务搭建">
+<meta name="twitter:description" content="1、下载安装git-2.7.0 12345678910111213141516&amp;lt;!-- more --&amp;gt;wget https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gzyum install gcc tar xvf git-2.7.0.tar.gz;cd git-2.7.0make configuremkdir /usr">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://xulin.me/2016/07/15/2016-07-15-git-service/"/>
+
+
+
+
+
+  <title> git服务搭建 | 岦 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?5de420905d97b3fb33d580e74b60a030";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+    
+      
+      <span class="site-title">岦</span>
+      
+    </a>
+  </div>
+    
+      <p class="site-subtitle"></p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-dev">
+          <a href="/categories/dev" rel="section" >
+            
+              <i class="menu-item-icon fa fa-fw fa-code"></i> <br />
+            
+            编码
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-ops">
+          <a href="/categories/ops" rel="section" >
+            
+              <i class="menu-item-icon fa fa-fw fa-linux"></i> <br />
+            
+            系统
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-balabala">
+          <a href="/categories/balabala" rel="section" >
+            
+              <i class="menu-item-icon fa fa-fw fa-paper-plane"></i> <br />
+            
+            杂谈
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-hhost">
+          <a href="http://my.henghost.com/aff.php?aff=5113" rel="section" style="color:red" target="_blank">
+            
+              <i class="menu-item-icon fa fa-fw fa-server"></i> <br />
+            
+            云主机
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://xulin.me/2016/07/15/2016-07-15-git-service/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="岦">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/images/avatar.gif">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="岦">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="岦" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                git服务搭建
+              
+            
+          </h1>
+        
+
+        
+        
+          <div class="post-meta">
+            <span class="post-time">
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-o"></i>
+                </span>
+                
+                <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-07-15T00:00:00+00:00">
+                  2016-07-15
+                </time>
+              
+
+              
+
+              
+            </span>
+            
+          
+            
+              <span class="post-category" >
+              
+                <span class="post-meta-divider">|</span>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-folder-o"></i>
+                </span>
+                
+                
+                  <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                    <a href="/categories/ops/" itemprop="url" rel="index">
+                      <span itemprop="name">ops</span>
+                    </a>
+                  </span>
+
+                  
+                  
+                
+              </span>
+            
+
+            
+              
+            
+
+            
+
+            
+            
+
+            
+
+            
+          
+          </div>
+         
+
+      </header>
+    
+
+
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="1、下载安装"><a href="#1、下载安装" class="headerlink" title="1、下载安装"></a>1、下载安装</h3><p><a href="https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gz" target="_blank" rel="external">git-2.7.0</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&lt;!-- more --&gt;</div><div class="line">wget https://www.kernel.org/pub/software/scm/git/git-2.7.0.tar.gz</div><div class="line">yum install gcc </div><div class="line">tar xvf git-2.7.0.tar.gz;cd git-2.7.0</div><div class="line">make configure</div><div class="line">mkdir /usr/local/git</div><div class="line">./configure --prefix=/usr/local/git</div><div class="line">make install</div><div class="line">make install</div><div class="line">#设置环境变量</div><div class="line">vim ~/.bash_profile</div><div class="line">PATH=$PATH:$HOME/bin:/usr/local/git/bin/</div><div class="line">export PATH</div><div class="line">source ~/.bash_profile</div><div class="line">#查看</div><div class="line">git --version</div></pre></td></tr></table></figure>
+<h3 id="2、配置"><a href="#2、配置" class="headerlink" title="2、配置"></a>2、配置</h3><p>稍微设置一下用户信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git config --global user.name &quot;xulis2012&quot;</div><div class="line">git config --global user.email xulis2012@gmail.com</div></pre></td></tr></table></figure>
+<p>创建git用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">useradd -m -r git</div><div class="line">#设置git的登录shell为git-shell</div><div class="line">vim /etc/passwd</div><div class="line">git:x:500:501::/home/git:/usr/local/git/bin/git-shell</div></pre></td></tr></table></figure>
+<p>新建SSH-key</p>
+<blockquote>
+<p>如果出于安全考虑，需要使用有密码的key，那么客户端需要使用SSH密钥密码记忆功能，比如ssh-agent等方式，如果ssh-key不需要是无密码的，则无需设置。</p>
+<p>默认情况下会使用SSH的默认key（一般为id_rsa），自行指定，可使用~/.ssh/config</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">su git</div><div class="line">ssh-keygen</div><div class="line">#这里以指定key例子</div><div class="line">[root@@omd_host test]# 🚀 ssh-keygen</div><div class="line">Generating public/private rsa key pair.</div><div class="line">Enter file in which to save the key (/root/.ssh/id_rsa): /home/git/.ssh/id_git</div><div class="line">Enter passphrase (empty for no passphrase):  #密码设置为空，如果设置了密码，客户端使用，需有记住此Key密码的功能</div><div class="line">Enter same passphrase again:</div><div class="line">Your identification has been saved in /tmp/id_test.</div><div class="line">Your public key has been saved in /tmp/id_test.pub.</div><div class="line">The key fingerprint is:</div><div class="line">db:c8:37:24:56:08:b8:c5:d5:8e:f3:60:84:d6:fb:a0 root@i-25BDB9AF</div><div class="line">The key&apos;s randomart image is:</div><div class="line">+--[ RSA 2048]----+</div><div class="line">|     o.+..       |</div><div class="line">|    . =.o..      |</div><div class="line">|     + ..+.      |</div><div class="line">|    .   B..      |</div><div class="line">|       oS*.      |</div><div class="line">|      Eo *o      |</div><div class="line">|        + +      |</div><div class="line">|         . .     |</div><div class="line">|                 |</div><div class="line">+-----------------+</div><div class="line">cat /home/git/.ssh/id_git.pub &gt;&gt; /home/git/.ssh/authorized_keys </div><div class="line">chmod 600 /home/git/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+<p> 测试SSH</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">#一般出于安全考虑，服务端ssh端口会被修改，这里以2222为例，git默认使用22连接</div><div class="line">ssh -p 2222 -i /home/git/.ssh/id_git git@localhost</div><div class="line">#连接成功的话，就说明ssh配置是没有问题的了</div></pre></td></tr></table></figure>
+<p>新建裸项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mkdir /opt/git/myproject</div><div class="line">cd /opt/git/myproject</div><div class="line">git init --bare</div><div class="line">chown -R git:git /opt/git/myproject </div><div class="line">#如果目录没有写权限， git push的时候会提示:&quot;remote: error: insufficient permission for adding an object to repository database ./objects&quot;错误。</div></pre></td></tr></table></figure>
+<h3 id="3、客户端配置"><a href="#3、客户端配置" class="headerlink" title="3、客户端配置"></a>3、客户端配置</h3><p>首先客户端需要有私钥(yue)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scp /home/git/.ssh/id_git username@remote_host:/keypath/</div></pre></td></tr></table></figure>
+<p>添加ssh配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">vim ~/.ssh/config</div><div class="line">Host gitser</div><div class="line">	HostName 192.168.1.1   #git服务器的地址</div><div class="line">	User git</div><div class="line">	IdentityFile /keypath/id_git  #指定使用的私钥</div><div class="line">	IdentitiesOnly yes</div></pre></td></tr></table></figure>
+<p>测试</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">cd /tmp</div><div class="line">git clone ssh://git@gitser:2211/opt/git/myproject ./test</div><div class="line">cd ./test</div><div class="line">echo &apos;(define (doub x) (* x 2)&apos; &gt; te.scm</div><div class="line">git add te.scm</div><div class="line">git commit -m &quot;first&quot;</div><div class="line">git push</div></pre></td></tr></table></figure>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><blockquote>
+<p>其实过程比较简单，<a href="http://git-scm.com/book/zh/v2" target="_blank" rel="external">官方文档</a>也相当详细。之所以要写出来，是因为SSH的方式，SSH的问题我折腾了挺久，大体上来说是这样的：</p>
+<p>默认情况下,git clone 可以指定用户和SSH端口(例如:<code>git clone ssh://git@hostname:2222/path/</code>)，证书使用的是当前用户的~/.ssh/id_rsa</p>
+<p>而我的需求是:首先SSH端口不用22以及用户不用ROOT都满足了；然后是我需要的是一些其他需求和解决方案，希望对有这种需求的人有帮助：</p>
+<p><strong>指定Key：使用SSH的config配置</strong></p>
+<p><strong>Key密码验证：使用ssh-agent</strong></p>
+</blockquote>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div></div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+        <div id="wechat" style="display: inline-block">
+          <img id="wechat_qr" src="/images/wechat.png" alt="岦 WeChat Pay"/>
+          <p>微信打赏</p>
+        </div>
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/alipay.png" alt="岦 Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/git/" rel="tag"># git</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/14/2016-07-14-docker-and-systemd/" rel="next" title="docker中使用systemd">
+                <i class="fa fa-chevron-left"></i> docker中使用systemd
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/30/2016-09-30-k8s-centos7/" rel="prev" title="CentOS7搭建Kubernetes 1.3">
+                CentOS7搭建Kubernetes 1.3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="岦" />
+          <p class="site-author-name" itemprop="name">岦</p>
+          <p class="site-description motion-element" itemprop="description">庭院深深深几许...</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+	
+	
+
+          
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xulis" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:xulis2012@163.com" target="_blank" title="Email">
+                  
+                    <i class="fa fa-fw fa-envelope-o"></i>
+                  
+                  Email
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、下载安装"><span class="nav-number">1.</span> <span class="nav-text">1、下载安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、配置"><span class="nav-number">2.</span> <span class="nav-text">2、配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、客户端配置"><span class="nav-number">3.</span> <span class="nav-text">3、客户端配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结束"><span class="nav-number">4.</span> <span class="nav-text">结束</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">岦</span>
+</div>
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid="></script>
+      <!-- UY END -->
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>
