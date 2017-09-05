@@ -1,5 +1,5 @@
 # Site settings
-title:       岦_
+title:       岦
 email:       xulis2012@gmail.com
 author:      (xu (xu lis))
 description: "當時明月在，曾照彩雲歸。"
@@ -26,7 +26,7 @@ bing_verification:
 animated:             false
 show_related_posts:   false
 show_post_footers:    false
-show_social_icons:    false
+show_social_icons:    true
 ajaxify_contact_form: false
 enable_mathjax: false
 extended_fonts: false
@@ -54,7 +54,7 @@ facebook_appid:
 facebook_comments_number: 10
 
 # Social icons
-github_username:
+github_username: xulis
 reddit_username:
 bitbucket_username:
 stackoverflow_id:
@@ -122,7 +122,7 @@ markdown:     kramdown
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
 permalink:    pretty
-paginate:     4
+paginate:     9
 sass:
   style: compressed
 gems:
