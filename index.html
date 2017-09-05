@@ -11,7 +11,8 @@ layout: default
 	<!-- xulis2012
           <p class="post-meta">{{ post.date | date: site.date_format }}</p>
 	-->
-          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h3 class="h1 post-title">{{ post.title }}</h3></a>
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h5 class="h1 post-title">{{ post.title }}</h5></a>
+	<!-- xulis2012
           <span class="post-summary">
             {% if post.summary %}
               {{ post.summary }}
@@ -19,6 +20,7 @@ layout: default
               {{ post.excerpt }}
             {% endif %}
           </span>
+	-->
         </div>
       {% endfor %}
     </div>
