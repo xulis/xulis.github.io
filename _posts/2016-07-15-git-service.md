@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "git服务搭建"
+title:      "Git服务搭建"
 date:       2016-07-15
 summary:	"使用ssh协议"
 categories: ops
