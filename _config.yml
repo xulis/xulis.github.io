@@ -1,14 +1,18 @@
 # Site settings
-title:       Pixyll
-email:       your_email@example.com
-author:      John Otander
-description: "A simple, beautiful theme for Jekyll that emphasizes content rather than aesthetic fluff."
+title:       岦_
+email:       xulis2012@gmail.com
+author:      (xu (xu lis))
+description: "當時明月在，曾照彩雲歸。"
 baseurl:     ""
-url:         "http://pixyll.com"
+url:         "http://xulin.me"
 date_format: "%b %-d, %Y"
 header_pages:
- - about.md
- - contact.html
+ #- about.md
+ #- contact.html
+ - dev.html
+ - ops.html
+ - balabala.html
+ - http://my.henghost.com/aff.php?aff=5113
 
 # Google services
 google_verification:
