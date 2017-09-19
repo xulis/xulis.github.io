@@ -4,3 +4,11 @@ title: 编码
 permalink: /dev/
 tags: dev
 ---
+
+<div class="posts center">
+    {% for post in site.categories.dev %}
+        <div class="post py1">
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h3 class="h3 post-title">{{ post.title }}</h3></a>
+        </div>
+  {% endfor %}
+</div>
