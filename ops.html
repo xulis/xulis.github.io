@@ -4,3 +4,10 @@ title: 系统
 permalink: /ops/
 tags: ops
 ---
+<div class="posts center">
+    {% for post in site.tags.ops %}
+        <div class="post py1">
+          <a href="{{ post.url | prepend: site.baseurl }}" class="post-link"><h3 class="h3 post-title">{{ post.title }}</h3></a>
+        </div>
+  {% endfor %}
+</div>

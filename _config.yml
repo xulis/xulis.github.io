@@ -122,7 +122,7 @@ markdown:     kramdown
 redcarpet:
   extensions: ['smart', 'tables', 'with_toc_data']
 permalink:    pretty
-paginate:     9
+paginate:     12
 sass:
   style: compressed
 gems:
