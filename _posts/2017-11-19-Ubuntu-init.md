@@ -30,7 +30,9 @@ categories: ops
 ```shell
 #amazon
 sudo rm -rf /usr/share/applications/ubuntu-amazon-default.desktop
-echo 'Hidden=true' | cat /usr/share/applications/ubuntu-amazon-default.desktop 2>/dev/null - > ~/.local/share/applications/ubuntu-amazon-default.desktop
+echo 'Hidden=true' \
+| cat /usr/share/applications/ubuntu-amazon-default.desktop 2>/dev/null \
+- > ~/.local/share/applications/ubuntu-amazon-default.desktop
 #打开仓库删除thunderbird、deja-dup 之类不用的软件，看个人使用情况。
 ###顺便设置个UTC时间
 sudo  timedatectl set-local-rtc true  --adjust-system-clock
@@ -58,16 +60,17 @@ sudo  timedatectl set-local-rtc true  --adjust-system-clock
 
   **Oh My Zsh**是ZSH的一份配置，实现比Bash更人性化的终端操作，对于整天要对着终端敲命令的人来说这东西相比较于Bash可以提高不少效率。
 
-  ```shell
-  sudo apt-get install zsh
-  #切换默认的shell为zsh
-  chsh -s $(which zsh)
-  #重启机器或注销
-  #check
-  echo $SHELL
-  #need git
-  sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-  ```
+```shell
+sudo apt-get install zsh
+#切换默认的shell为zsh
+chsh -s $(which zsh)
+#重启机器或注销
+#check
+echo $SHELL
+#need git
+sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/\
+oh-my-zsh/master/tools/install.sh)"
+```
 
 
 - **Guake Terminal**
