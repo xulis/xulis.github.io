@@ -225,7 +225,7 @@ oh-my-zsh/master/tools/install.sh)"
 
 ![ole](http://olq9z1vkh.bkt.clouddn.com/image/ole.png)
 
-###引用和感谢
+### 引用和感谢
 
 >  首先感谢Canonical创造了[Ubuntu](https://www.ubuntu.com/) ，感谢Aliyun、中科大、网易等国内镜像站。
 >
