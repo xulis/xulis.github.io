@@ -134,10 +134,6 @@ sudo  timedatectl set-local-rtc true  --adjust-system-clock
   sudo ss -tunlp | grep <local port>
   ```
 
-  ​
-
-  ​
-
 - **编辑器**
 
   IT狗用的最多的软件恐怕就是编辑器了。Linux下面选择还是挺多的，比如：
