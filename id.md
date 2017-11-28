@@ -4,4 +4,4 @@ title: About me
 permalink: /id/
 ---
 
-![about](http://www.jianshu.com/u/3d714340c18f)
+![about](http://olq9z1vkh.bkt.clouddn.com/WX20171128-174455@2x.png)
