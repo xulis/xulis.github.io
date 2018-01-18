@@ -12,6 +12,7 @@ header_pages:
  - dev.html
  - ops.html
  - balabala.html
+ - about.html
 
 # Google services
 google_verification:
