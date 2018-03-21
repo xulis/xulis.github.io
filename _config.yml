@@ -7,11 +7,11 @@ baseurl:     ""
 url:         "http://xulin.me"
 date_format: "%b %-d, %Y"
 header_pages:
- #- about.md
  #- contact.html
  - dev.html
  - ops.html
  - balabala.html
+ - about.html
 
 # Google services
 google_verification:
