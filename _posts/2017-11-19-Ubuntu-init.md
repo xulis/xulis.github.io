@@ -25,7 +25,7 @@ categories: ops
 
 4. 更新驱动(若需要)
 
-###2.删除不需要的软件 
+### 2.删除不需要的软件 
 
 ```shell
 #amazon
@@ -34,7 +34,7 @@ echo 'Hidden=true' \
 | cat /usr/share/applications/ubuntu-amazon-default.desktop 2>/dev/null \
 - > ~/.local/share/applications/ubuntu-amazon-default.desktop
 #打开仓库删除thunderbird、deja-dup 之类不用的软件，看个人使用情况。
-###顺便设置个UTC时间
+### 顺便设置个UTC时间
 sudo  timedatectl set-local-rtc true  --adjust-system-clock
 ```
 
