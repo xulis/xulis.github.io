@@ -24,6 +24,8 @@ categories: dev
 
 PS: 欧几里得大概是很无聊的，那么奇怪的规律也能找到。
 
+**实现:**
+
 ```elixir
 defmodule Alt do
   def gcd(p, 0), do: p
