@@ -32,6 +32,8 @@ defmodule Alt do
   def gcd(p, q), do: gcd(q, rem(p, q))
 end
 
+# => oo
+
 IO.puts Alt.gcd(10,4)
 # -> 2 
 IO.puts Alt.gcd(10,0)
