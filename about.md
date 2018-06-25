@@ -8,3 +8,12 @@ permalink: /about/
 
 > 有一种追求，一直都在。
 
+---
+
+*请博主喝健力宝.*
+
+
+![微信支付](http://olq9z1vkh.bkt.clouddn.com/wechat.png =250x)
+
+![支付宝](http://olq9z1vkh.bkt.clouddn.com/alipay.png =250x)
+
