@@ -13,7 +13,5 @@ permalink: /about/
 *请博主喝健力宝.*
 
 
-![微信支付](http://olq9z1vkh.bkt.clouddn.com/wechat.png | width=200)
-
-![支付宝](http://olq9z1vkh.bkt.clouddn.com/alipay.png | width=200)
+![微信支付](http://olq9z1vkh.bkt.clouddn.com/wechat.png | width=200) | ![支付宝](http://olq9z1vkh.bkt.clouddn.com/alipay.png | width=200)
 
