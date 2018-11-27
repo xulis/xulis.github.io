@@ -11,4 +11,4 @@ permalink: /about/
 ---
 
 
-<div style="text-align: center"><img src="http://olq9z1vkh.bkt.clouddn.com/wechat.png" alt="微信支付" height="200px" /></div>
+<div style="text-align: center"><img src="https://m-pub.oss-cn-hongkong.aliyuncs.com/img/wechat.jpeg" alt="Wechat" height="200px" /></div>
