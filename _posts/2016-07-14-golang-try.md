@@ -2,7 +2,7 @@
 layout:     post
 title:      "线性递归、线性迭代和树形递归"
 date:       2016-07-14
-summary:	玩玩golang
+summary:    玩玩golang
 categories: dev
 ---
 
@@ -18,14 +18,14 @@ categories: dev
 package main
 import "fmt"
 func main() {
-	fmt.Println(factorial(6))
+    fmt.Println(factorial(6))
 }
 func factorial(i int) (n int) {
-	if i == 1 {
-		return 1
-	} else {
-		return i * factorial(i-1)
-	}
+    if i == 1 {
+        return 1
+    } else {
+        return i * factorial(i-1)
+    }
 }
 ```
 
@@ -37,17 +37,17 @@ func factorial(i int) (n int) {
 package main
 import "fmt"
 func main() {
-	fmt.Println(fib(8))
+    fmt.Println(fib(8))
 }
 func fib(i int) int {
-	switch i {
-	case 0:
-		return 0
-	case 1:
-		return 1
-	default:
-		return fib(i-1) + fib(i-2)
-	}
+    switch i {
+    case 0:
+        return 0
+    case 1:
+        return 1
+    default:
+        return fib(i-1) + fib(i-2)
+    }
 }
 ```
 * 线性迭代
@@ -58,16 +58,16 @@ func fib(i int) int {
 package main
 import "fmt"
 func main() {
-	fmt.Println(fib(8))
+    fmt.Println(fib(8))
 }
 func fib(i int) (n int) {
-	return fibIter(1, 0, i)
+    return fibIter(1, 0, i)
 }
 func fibIter(x, y, z int) (n int) {
-	if z == 0 {
-		return y
-	} else {
-		return fibIter(x+y, x, z-1)
-	}
+    if z == 0 {
+        return y
+    } else {
+        return fibIter(x+y, x, z-1)
+    }
 }
 ```
