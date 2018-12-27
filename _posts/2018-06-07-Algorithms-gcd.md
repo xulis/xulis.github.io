@@ -34,7 +34,7 @@ end
 
 
 IO.puts Alt.gcd(10,4)
-# -> 2 
+#-> 2 
 IO.puts Alt.gcd(10,0)
 #-> 10
 ```
