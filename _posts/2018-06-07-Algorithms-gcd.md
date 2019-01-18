@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "[抄算法 - 0 ] 2300年前的欧几里得算法"
+title:      "2300年前的欧几里得算法"
 date:       2018-06-07
 summary:    "懒得写摘要了-。-"
 categories: dev
