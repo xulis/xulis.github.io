@@ -10,4 +10,4 @@ permalink: /about/
 
 ---
 
-<div style="text-align: center"><img src="https://m-pub.oss-cn-hongkong.aliyuncs.com/img/wechat.jpeg" alt="Wechat" height="200px" /></div>
+<div style="text-align: center"><img src="https://m-pub.oss-cn-hongkong.aliyuncs.com/img/qrcode_for_llslsl.jpg" alt="Wechat" height="200px" /></div>
