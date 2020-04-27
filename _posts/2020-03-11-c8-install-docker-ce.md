@@ -14,7 +14,7 @@ categories: ops
 yum install -y yum-utils
 yum-config-manager \
   --add-repo       \
-	https://download.docker.com/linux/centos/docker-ce.rep
+  https://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
 yum -y install docker-ce
 ```
 
@@ -38,8 +38,9 @@ Error:
 2. 这时候你需要手动安装containerd的最新版本
 
 ```shell
-dnf install https://download.docker.com/linux/centos/7/x86_64/stable/\
-Packages/containerd.io-1.2.6-3.3.el7.x86_64.rpm
+dnf install -y https://mirrors.aliyun.com/docker-ce/\
+linux/centos/7/x86_64/stable/Packages/\
+containerd.io-1.2.13-3.1.el7.x86_64.rpm
 ```
 
 3. 再安装docekr-ce，即可
