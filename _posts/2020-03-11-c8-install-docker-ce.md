@@ -46,6 +46,6 @@ containerd.io-1.2.13-3.1.el7.x86_64.rpm
 3. 再安装docekr-ce，即可
 
 ```shell
-dnf install docker-ce
+yum install docker-ce
 ```
 
