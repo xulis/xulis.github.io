@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="author" content="xuls ">
+<meta name="description" content="这是之前发在自己公众号的一篇文章， 直接搬过来
+ 在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们DevOps所说的“运维管理平台”。 其实也没什么运不运维，本质上来说就是Web开发。
+所以， 我又一股脑地投向了前端娱乐圈。
+我不是一个实在的人，我每时每刻都在追求那些不切实际的东西，如若要搞前端，自然也不例外，当别人的眼神流露出对我还在玩上个月的框架的鄙视时， 我就恨不得从一开始就没有玩过前端。基于此，我大部分时间都在刷行业动态，GraphQL、LiveView、React牛逼还是Vue牛逼，Angular更新到什么版本了？TypeScript对比ELM有什么优势&amp;hellip;刷得精疲力尽之后，开始工作。
+经过两天这里看一下那里看一下，我学习了一些JavaScript的入门知识，写下此文以作记录，考虑到要除去中间开小差的时间，取名《JavaScript一日游》，主要记录JavaScript中的惯用编程范式。
+废话不多说，接下来&amp;hellip;那我无话可说。
+相对于别的编程语言来说，JavaScript简直就是嬉皮士，你想规规矩矩面向对象的时候它让你必须函数式一下，你想纯粹函数式的时候在某一时刻发现数据状态必须改一改，当然你很牛逼，这都不是事儿。然而由于NodeJS运行时是基于异步IO和事件循环模型， 你就死在了程序和事件一起写这件事上面。所以，用JavaScript来学习JavaScript的编程范式，并不是最好的方法，因为在学习之前，要踩过去的坑太多，所以接下来我用Racket来解释JavaScript编程范式，用最简单的方式来讲解(毕竟复杂的我也不会 -。- )。
+0x00: 回调 (callback) 选择NodeJS就是选择异步编程，就如前文所说，在很多时候你是程序和事件(event)一起写，程序就一步一步跑，事件会被丢到事件循环列表(poll queue)中，程序安安稳稳跑完，事件就不断被遍历执行，因为其丢到了队列里，所以不会阻塞程序的执行，所以有时候你的程序看起来执行顺序有点迷，比如有两个函数AB，按顺序调用AB，执行时却发现B先执行，A跟在了B屁股后面，这种事情你别问为什么，一问就发生：
+#lang racket (define 🐢 (displayln &amp;#34;🐢🐢🐢...&amp;#34;)) (define 🐇 (displayln &amp;#34;🐇🐇🐇...&amp;#34;)) 🐢 🐇 我们定义了乌龟和兔子两个函数，先调用乌龟函数，再调用兔子函数，正常来说我们会看到这样的输出：
+🐢🐢🐢... 🐇🐇🐇... 但是在NodeJS里面，你很可能会看到这样的输出：
+🐇🐇🐇... 🐢🐢🐢... 因为乌龟跑得慢，NodeJS是异步设计，有一些慢的执行(异步操作)就不等了，直接把它丢poll queue里，之后等待Event Loop轮到它的时候再执行，所以兔子就不等乌龟，自己先跑完了，乌龟在队列里排队。
+现在知道为什么NodeJS那么快了吧，在日常应用中，比如网路、IO这些比较慢的操作，NodeJS直接异步了丫的，让后面的程序先跑。不过快是快，就是程序行为有时候会很迷～
+那么有什么方法可以解决这种情况呢？毕竟有时候乌龟必须要在兔子前面，比如乌龟是兔子的女朋友，兔子跑赢乌龟就是找死，或者有一个操作强依赖前面那个异步的操作。
+这时候就用到回调了。
+回调呢，专业术语就是：回来之后再调用它丫的，呸呸呸，是“is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time." />
+<meta name="keywords" content=", dev" />
+<meta name="robots" content="noodp" />
+<meta name="theme-color" content="" />
+<link rel="canonical" href="/dev/2019-07-19-js/" />
+
+
+    <title>
+        
+            JavaScript用到的一些编程范式 :: 部署小歌 
+        
+    </title>
+
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css" rel="stylesheet"
+    type="text/css">
+
+
+
+<link rel="stylesheet" href="/main.36291d39bc84b89fbcf1e6ae08bb9789f53b796e2e02b67668c7ee948879d2ce.css">
+
+
+
+
+
+
+<meta itemprop="name" content="JavaScript用到的一些编程范式">
+<meta itemprop="description" content="这是之前发在自己公众号的一篇文章， 直接搬过来
+ 在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们DevOps所说的“运维管理平台”。 其实也没什么运不运维，本质上来说就是Web开发。
+所以， 我又一股脑地投向了前端娱乐圈。
+我不是一个实在的人，我每时每刻都在追求那些不切实际的东西，如若要搞前端，自然也不例外，当别人的眼神流露出对我还在玩上个月的框架的鄙视时， 我就恨不得从一开始就没有玩过前端。基于此，我大部分时间都在刷行业动态，GraphQL、LiveView、React牛逼还是Vue牛逼，Angular更新到什么版本了？TypeScript对比ELM有什么优势&hellip;刷得精疲力尽之后，开始工作。
+经过两天这里看一下那里看一下，我学习了一些JavaScript的入门知识，写下此文以作记录，考虑到要除去中间开小差的时间，取名《JavaScript一日游》，主要记录JavaScript中的惯用编程范式。
+废话不多说，接下来&hellip;那我无话可说。
+相对于别的编程语言来说，JavaScript简直就是嬉皮士，你想规规矩矩面向对象的时候它让你必须函数式一下，你想纯粹函数式的时候在某一时刻发现数据状态必须改一改，当然你很牛逼，这都不是事儿。然而由于NodeJS运行时是基于异步IO和事件循环模型， 你就死在了程序和事件一起写这件事上面。所以，用JavaScript来学习JavaScript的编程范式，并不是最好的方法，因为在学习之前，要踩过去的坑太多，所以接下来我用Racket来解释JavaScript编程范式，用最简单的方式来讲解(毕竟复杂的我也不会 -。- )。
+0x00: 回调 (callback) 选择NodeJS就是选择异步编程，就如前文所说，在很多时候你是程序和事件(event)一起写，程序就一步一步跑，事件会被丢到事件循环列表(poll queue)中，程序安安稳稳跑完，事件就不断被遍历执行，因为其丢到了队列里，所以不会阻塞程序的执行，所以有时候你的程序看起来执行顺序有点迷，比如有两个函数AB，按顺序调用AB，执行时却发现B先执行，A跟在了B屁股后面，这种事情你别问为什么，一问就发生：
+#lang racket (define 🐢 (displayln &#34;🐢🐢🐢...&#34;)) (define 🐇 (displayln &#34;🐇🐇🐇...&#34;)) 🐢 🐇 我们定义了乌龟和兔子两个函数，先调用乌龟函数，再调用兔子函数，正常来说我们会看到这样的输出：
+🐢🐢🐢... 🐇🐇🐇... 但是在NodeJS里面，你很可能会看到这样的输出：
+🐇🐇🐇... 🐢🐢🐢... 因为乌龟跑得慢，NodeJS是异步设计，有一些慢的执行(异步操作)就不等了，直接把它丢poll queue里，之后等待Event Loop轮到它的时候再执行，所以兔子就不等乌龟，自己先跑完了，乌龟在队列里排队。
+现在知道为什么NodeJS那么快了吧，在日常应用中，比如网路、IO这些比较慢的操作，NodeJS直接异步了丫的，让后面的程序先跑。不过快是快，就是程序行为有时候会很迷～
+那么有什么方法可以解决这种情况呢？毕竟有时候乌龟必须要在兔子前面，比如乌龟是兔子的女朋友，兔子跑赢乌龟就是找死，或者有一个操作强依赖前面那个异步的操作。
+这时候就用到回调了。
+回调呢，专业术语就是：回来之后再调用它丫的，呸呸呸，是“is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time.">
+<meta itemprop="datePublished" content="2019-07-19T00:00:00&#43;00:00" />
+<meta itemprop="dateModified" content="2019-07-19T00:00:00&#43;00:00" />
+<meta itemprop="wordCount" content="240">
+<meta itemprop="image" content=""/>
+
+
+
+<meta itemprop="keywords" content="dev," />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+
+<meta name="twitter:title" content="JavaScript用到的一些编程范式"/>
+<meta name="twitter:description" content="这是之前发在自己公众号的一篇文章， 直接搬过来
+ 在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们DevOps所说的“运维管理平台”。 其实也没什么运不运维，本质上来说就是Web开发。
+所以， 我又一股脑地投向了前端娱乐圈。
+我不是一个实在的人，我每时每刻都在追求那些不切实际的东西，如若要搞前端，自然也不例外，当别人的眼神流露出对我还在玩上个月的框架的鄙视时， 我就恨不得从一开始就没有玩过前端。基于此，我大部分时间都在刷行业动态，GraphQL、LiveView、React牛逼还是Vue牛逼，Angular更新到什么版本了？TypeScript对比ELM有什么优势&hellip;刷得精疲力尽之后，开始工作。
+经过两天这里看一下那里看一下，我学习了一些JavaScript的入门知识，写下此文以作记录，考虑到要除去中间开小差的时间，取名《JavaScript一日游》，主要记录JavaScript中的惯用编程范式。
+废话不多说，接下来&hellip;那我无话可说。
+相对于别的编程语言来说，JavaScript简直就是嬉皮士，你想规规矩矩面向对象的时候它让你必须函数式一下，你想纯粹函数式的时候在某一时刻发现数据状态必须改一改，当然你很牛逼，这都不是事儿。然而由于NodeJS运行时是基于异步IO和事件循环模型， 你就死在了程序和事件一起写这件事上面。所以，用JavaScript来学习JavaScript的编程范式，并不是最好的方法，因为在学习之前，要踩过去的坑太多，所以接下来我用Racket来解释JavaScript编程范式，用最简单的方式来讲解(毕竟复杂的我也不会 -。- )。
+0x00: 回调 (callback) 选择NodeJS就是选择异步编程，就如前文所说，在很多时候你是程序和事件(event)一起写，程序就一步一步跑，事件会被丢到事件循环列表(poll queue)中，程序安安稳稳跑完，事件就不断被遍历执行，因为其丢到了队列里，所以不会阻塞程序的执行，所以有时候你的程序看起来执行顺序有点迷，比如有两个函数AB，按顺序调用AB，执行时却发现B先执行，A跟在了B屁股后面，这种事情你别问为什么，一问就发生：
+#lang racket (define 🐢 (displayln &#34;🐢🐢🐢...&#34;)) (define 🐇 (displayln &#34;🐇🐇🐇...&#34;)) 🐢 🐇 我们定义了乌龟和兔子两个函数，先调用乌龟函数，再调用兔子函数，正常来说我们会看到这样的输出：
+🐢🐢🐢... 🐇🐇🐇... 但是在NodeJS里面，你很可能会看到这样的输出：
+🐇🐇🐇... 🐢🐢🐢... 因为乌龟跑得慢，NodeJS是异步设计，有一些慢的执行(异步操作)就不等了，直接把它丢poll queue里，之后等待Event Loop轮到它的时候再执行，所以兔子就不等乌龟，自己先跑完了，乌龟在队列里排队。
+现在知道为什么NodeJS那么快了吧，在日常应用中，比如网路、IO这些比较慢的操作，NodeJS直接异步了丫的，让后面的程序先跑。不过快是快，就是程序行为有时候会很迷～
+那么有什么方法可以解决这种情况呢？毕竟有时候乌龟必须要在兔子前面，比如乌龟是兔子的女朋友，兔子跑赢乌龟就是找死，或者有一个操作强依赖前面那个异步的操作。
+这时候就用到回调了。
+回调呢，专业术语就是：回来之后再调用它丫的，呸呸呸，是“is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time."/>
+
+
+
+    <meta property="og:title" content="JavaScript用到的一些编程范式" />
+<meta property="og:description" content="这是之前发在自己公众号的一篇文章， 直接搬过来
+ 在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们DevOps所说的“运维管理平台”。 其实也没什么运不运维，本质上来说就是Web开发。
+所以， 我又一股脑地投向了前端娱乐圈。
+我不是一个实在的人，我每时每刻都在追求那些不切实际的东西，如若要搞前端，自然也不例外，当别人的眼神流露出对我还在玩上个月的框架的鄙视时， 我就恨不得从一开始就没有玩过前端。基于此，我大部分时间都在刷行业动态，GraphQL、LiveView、React牛逼还是Vue牛逼，Angular更新到什么版本了？TypeScript对比ELM有什么优势&hellip;刷得精疲力尽之后，开始工作。
+经过两天这里看一下那里看一下，我学习了一些JavaScript的入门知识，写下此文以作记录，考虑到要除去中间开小差的时间，取名《JavaScript一日游》，主要记录JavaScript中的惯用编程范式。
+废话不多说，接下来&hellip;那我无话可说。
+相对于别的编程语言来说，JavaScript简直就是嬉皮士，你想规规矩矩面向对象的时候它让你必须函数式一下，你想纯粹函数式的时候在某一时刻发现数据状态必须改一改，当然你很牛逼，这都不是事儿。然而由于NodeJS运行时是基于异步IO和事件循环模型， 你就死在了程序和事件一起写这件事上面。所以，用JavaScript来学习JavaScript的编程范式，并不是最好的方法，因为在学习之前，要踩过去的坑太多，所以接下来我用Racket来解释JavaScript编程范式，用最简单的方式来讲解(毕竟复杂的我也不会 -。- )。
+0x00: 回调 (callback) 选择NodeJS就是选择异步编程，就如前文所说，在很多时候你是程序和事件(event)一起写，程序就一步一步跑，事件会被丢到事件循环列表(poll queue)中，程序安安稳稳跑完，事件就不断被遍历执行，因为其丢到了队列里，所以不会阻塞程序的执行，所以有时候你的程序看起来执行顺序有点迷，比如有两个函数AB，按顺序调用AB，执行时却发现B先执行，A跟在了B屁股后面，这种事情你别问为什么，一问就发生：
+#lang racket (define 🐢 (displayln &#34;🐢🐢🐢...&#34;)) (define 🐇 (displayln &#34;🐇🐇🐇...&#34;)) 🐢 🐇 我们定义了乌龟和兔子两个函数，先调用乌龟函数，再调用兔子函数，正常来说我们会看到这样的输出：
+🐢🐢🐢... 🐇🐇🐇... 但是在NodeJS里面，你很可能会看到这样的输出：
+🐇🐇🐇... 🐢🐢🐢... 因为乌龟跑得慢，NodeJS是异步设计，有一些慢的执行(异步操作)就不等了，直接把它丢poll queue里，之后等待Event Loop轮到它的时候再执行，所以兔子就不等乌龟，自己先跑完了，乌龟在队列里排队。
+现在知道为什么NodeJS那么快了吧，在日常应用中，比如网路、IO这些比较慢的操作，NodeJS直接异步了丫的，让后面的程序先跑。不过快是快，就是程序行为有时候会很迷～
+那么有什么方法可以解决这种情况呢？毕竟有时候乌龟必须要在兔子前面，比如乌龟是兔子的女朋友，兔子跑赢乌龟就是找死，或者有一个操作强依赖前面那个异步的操作。
+这时候就用到回调了。
+回调呢，专业术语就是：回来之后再调用它丫的，呸呸呸，是“is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/dev/2019-07-19-js/" />
+<meta property="og:image" content=""/>
+<meta property="article:published_time" content="2019-07-19T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-07-19T00:00:00+00:00" /><meta property="og:site_name" content="部署小歌" />
+
+
+
+
+
+
+    <meta property="article:published_time" content="2019-07-19 00:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="">
+        <div class="container">
+            <header class="header">
+    <span class="header__inner">
+        <a href="/" style="text-decoration: none;">
+    <div class="logo">
+        
+            <span class="logo__mark">></span>
+            <span class="logo__text">(b (s x g))</span>
+            <span class="logo__cursor" style=
+                  "
+                   
+                   ">
+            </span>
+        
+    </div>
+</a>
+
+
+        <span class="header__right">
+            
+                <nav class="menu">
+    <ul class="menu__inner"><li><a href="/ops">系統</a></li><li><a href="/dev">編碼</a></li><li><a href="/weekly">週刊</a></li><li><a href="/echo">雜談</a></li>
+    </ul>
+</nav>
+
+                <span class="menu-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+                    </svg>
+                </span>
+            
+
+            <span class="theme-toggle unselectable"><svg class="theme-toggler" width="24" height="24" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"/>
+</svg>
+</span>
+        </span>
+    </span>
+</header>
+
+
+            <div class="content">
+                
+    <main class="post">
+
+        <div class="post-info">
+            
+            </p>
+        </div>
+
+        <article>
+            <h2 class="post-title"><a href="/dev/2019-07-19-js/">JavaScript用到的一些编程范式</a></h2>
+
+            
+
+            
+
+            <div class="post-content">
+                <blockquote>
+<p>这是之前发在自己公众号的一篇文章， 直接搬过来</p>
+</blockquote>
+<p>在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们<del>DevOps</del>所说的“运维管理平台”。 其实也没什么运不运维，本质上来说就是Web开发。</p>
+<p>所以， 我又一股脑地投向了前端娱乐圈。</p>
+<p>我不是一个实在的人，我每时每刻都在追求那些不切实际的东西，如若要搞前端，自然也不例外，当别人的眼神流露出对我还在玩上个月的框架的鄙视时， 我就恨不得从一开始就没有玩过前端。基于此，我大部分时间都在刷行业动态，GraphQL、LiveView、React牛逼还是Vue牛逼，Angular更新到什么版本了？TypeScript对比ELM有什么优势&hellip;刷得精疲力尽之后，开始工作。</p>
+<p>经过两天这里看一下那里看一下，我学习了一些JavaScript的入门知识，写下此文以作记录，考虑到要除去中间开小差的时间，取名《JavaScript一日游》，主要记录JavaScript中的惯用编程范式。</p>
+<p>废话不多说，接下来&hellip;那我无话可说。</p>
+<p>相对于别的编程语言来说，JavaScript简直就是嬉皮士，你想规规矩矩面向对象的时候它让你必须函数式一下，你想纯粹函数式的时候在某一时刻发现数据状态必须改一改，当然你很牛逼，这都不是事儿。然而由于NodeJS运行时是基于异步IO和事件循环模型， 你就死在了程序和事件一起写这件事上面。所以，用JavaScript来学习JavaScript的编程范式，并不是最好的方法，因为在学习之前，要踩过去的坑太多，所以接下来我用Racket来解释JavaScript编程范式，用最简单的方式来讲解(毕竟复杂的我也不会 -。- )。</p>
+<h4 id="0x00-回调-callback">0x00: 回调 (callback)</h4>
+<p>选择NodeJS就是选择异步编程，就如前文所说，在很多时候你是程序和事件(event)一起写，程序就一步一步跑，事件会被丢到事件循环列表(poll queue)中，程序安安稳稳跑完，事件就不断被遍历执行，因为其丢到了队列里，所以不会阻塞程序的执行，所以有时候你的程序看起来执行顺序有点迷，比如有两个函数AB，按顺序调用AB，执行时却发现B先执行，A跟在了B屁股后面，这种事情你别问为什么，一问就发生：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#f92672">#</span>lang racket
+(<span style="color:#66d9ef">define </span><span style="color:#960050;background-color:#1e0010">🐢</span> (<span style="color:#a6e22e">displayln</span> <span style="color:#e6db74">&#34;🐢🐢🐢...&#34;</span>))
+(<span style="color:#66d9ef">define </span><span style="color:#960050;background-color:#1e0010">🐇</span> (<span style="color:#a6e22e">displayln</span> <span style="color:#e6db74">&#34;🐇🐇🐇...&#34;</span>))
+<span style="color:#960050;background-color:#1e0010">🐢</span>
+<span style="color:#960050;background-color:#1e0010">🐇</span>
+</code></pre></div><p>我们定义了乌龟和兔子两个函数，先调用乌龟函数，再调用兔子函数，正常来说我们会看到这样的输出：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#960050;background-color:#1e0010">🐢🐢🐢</span><span style="color:#f92672">...</span>
+<span style="color:#960050;background-color:#1e0010">🐇🐇🐇</span><span style="color:#f92672">...</span>
+</code></pre></div><p>但是在NodeJS里面，你很可能会看到这样的输出：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#960050;background-color:#1e0010">🐇🐇🐇</span><span style="color:#f92672">...</span>
+<span style="color:#960050;background-color:#1e0010">🐢🐢🐢</span><span style="color:#f92672">...</span>
+</code></pre></div><p>因为乌龟跑得慢，NodeJS是异步设计，有一些慢的执行(异步操作)就不等了，直接把它丢poll queue里，之后等待Event Loop轮到它的时候再执行，所以兔子就不等乌龟，自己先跑完了，乌龟在队列里排队。</p>
+<p>现在知道为什么NodeJS那么快了吧，在日常应用中，比如网路、IO这些比较慢的操作，NodeJS直接异步了丫的，让后面的程序先跑。不过快是快，就是程序行为有时候会很迷～</p>
+<p>那么有什么方法可以解决这种情况呢？毕竟有时候乌龟必须要在兔子前面，比如乌龟是兔子的女朋友，兔子跑赢乌龟就是找死，或者有一个操作强依赖前面那个异步的操作。</p>
+<p>这时候就用到回调了。</p>
+<p>回调呢，专业术语就是：回来之后再调用它丫的，呸呸呸，是“is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time.”，百科抄的，甮管了，大白话就是一段代码(过程、即函数)，给它起个名字叫回调函数，它作为参数的方式传递给另一个函数，使得函数可以控制这个回调函数啥时候跑、怎么跑，跑不跑。在我们的例子里，乌龟是兔子的女朋友，所以乌龟想要兔子怎么跑就得怎么跑，那么兔子就得做回调函数， 给乌龟使唤。</p>
+<p>大概是这样：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#f92672">#</span>lang racket
+(<span style="color:#66d9ef">define </span>(<span style="color:#960050;background-color:#1e0010">🐇</span> str)
+  (<span style="color:#a6e22e">displayln</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;我可以出发了 ~a&#34;</span> str)))
+(<span style="color:#66d9ef">define </span>(<span style="color:#960050;background-color:#1e0010">🐢</span> callback)
+  (<span style="color:#a6e22e">displayln</span> <span style="color:#e6db74">&#34;🐢🐢🐢...&#34;</span>)
+  (<span style="color:#66d9ef">define </span>   ZHANAN <span style="color:#e6db74">&#34;🐇&#34;</span>)
+  (<span style="color:#a6e22e">callback</span>  ZHANAN    ))
+(<span style="color:#960050;background-color:#1e0010">🐢</span> <span style="color:#960050;background-color:#1e0010">🐇</span>) <span style="color:#75715e">;;兔子作为参数传递给乌龟</span>
+执行结果<span style="color:#960050;background-color:#1e0010">：</span>
+<span style="color:#960050;background-color:#1e0010">🐢🐢🐢</span><span style="color:#f92672">...</span>
+我可以出发了 <span style="color:#960050;background-color:#1e0010">🐇</span>
+</code></pre></div><p>好了，本质是这样的，接下来在JS里，有很多地方借助这一种特性实现了在灵活性上的质的飞跃，也有一些滥用这种模式，包出一手又一手的洋葱(回调地狱)，在新版本的JS里，可以用Async/await优化此类问题。</p>
+<p>当然， 嬉皮士还有异步回调和同步回调， 异步回调顺序也是异步的，然后虽然回调用来解决了这一类程序执行顺序的问题，然而这一种函数式编程范式的功能可不止这一点，而且本质上回调也是闭包等，不管在什么编程语言里都用得极其广泛，可以给程序带来极大灵活性。诀窍就是将函数、过程作为一等对象看待。</p>
+<h4 id="0x01-面向对象-x-函数式编程--真の嬉皮士">0x01: 面向对象 x 函数式编程 = 真の嬉皮士</h4>
+<p>刚才我们谈论的是以函数传递给函数的方式实现过程抽象，以同样的功能为例，我们对比一下面向对象范式里的做法。在面向对象(👧)编程里，核心范式就是定义一类，然后给类加属性、加方法，一个最简单的例子是酱紫:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">
+<span style="color:#f92672">#</span>lang racket
+(<span style="color:#a6e22e">require</span> racket/class)
+(<span style="color:#66d9ef">define </span>dog-class%
+  (<span style="color:#a6e22e">class</span> object%
+    (<span style="color:#a6e22e">field</span> (<span style="color:#a6e22e">name</span> <span style="color:#e6db74">&#34;二哈&#34;</span>)
+              (<span style="color:#a6e22e">weight</span> <span style="color:#ae81ff">10</span>))
+    (<span style="color:#a6e22e">define/public</span> (<span style="color:#a6e22e">eat</span>)
+      (<span style="color:#a6e22e">displayln</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;~a 又吃一顿变成了 ~a 斤&#34;</span>
+                  name (* <span style="color:#ae81ff">2</span> weight))))
+    (<span style="color:#a6e22e">super-new</span>)))
+(<span style="color:#a6e22e">send</span> (<span style="color:#a6e22e">new</span> dog-class%) eat)
+二哈 又吃了一顿变成了 <span style="color:#ae81ff">20</span> 斤
+</code></pre></div><p>如果你用的是<em>java</em>或者<em>Python</em>，有一种做法是，在类里面添加了很多方法，这些方法都是操作了类本身的属性然后再把类返回回来。然后代码就像这个样子：</p>
+<p>new了一个对象(🐕)然后开始一连串执行里面的方法：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">🐶 </span><span style="color:#a6e22e">extends</span> <span style="color:#960050;background-color:#1e0010">🐕</span>
+
+<span style="color:#960050;background-color:#1e0010">🐶</span><span style="color:#f92672">.</span><span style="color:#a6e22e">eat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;🌿&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#f92672">.</span><span style="color:#a6e22e">eat</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;🌰&#34;</span><span style="color:#f92672">)</span>
+  <span style="color:#f92672">.</span><span style="color:#a6e22e">run</span><span style="color:#f92672">(</span>100<span style="color:#f92672">)</span>
+  <span style="color:#f92672">...</span>  
+</code></pre></div><p>而对于函数式编程，则是一层层地传递函数，函数返回的函数又传递给函数，挫一点的编程语言这样写(比如JS)：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">func1</span>(<span style="color:#a6e22e">func2</span>(<span style="color:#a6e22e">func3</span>(<span style="color:#a6e22e">func4</span>(<span style="color:#a6e22e">func5</span>(<span style="color:#a6e22e">func6</span>(<span style="color:#e6db74">&#34;🐶&#34;</span>))))))
+</code></pre></div><p>更加高级的函数式编程语言，比如elixir或者F#，会提供管道符(Pipe)操作:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-elixir" data-lang="elixir"><span style="color:#960050;background-color:#1e0010">🐶</span><span style="color:#f92672">|&gt;</span> func1
+  <span style="color:#f92672">|&gt;</span> func2
+  <span style="color:#f92672">|&gt;</span> func3
+  <span style="color:#f92672">|&gt;</span> func4
+  ...
+</code></pre></div><p>是不是很优美咧～</p>
+<p>在JS的世界中，我们得做嬉皮士，两种范式一起用！有时候传递的是类自身，有时候传递的是函数(命名函数 or lambda)，有时候都传，这种事情，最紧要解释器开心。我们举一个例子：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme"><span style="color:#f92672">#</span>lang racket
+(<span style="color:#a6e22e">require</span> racket/class)
+(<span style="color:#66d9ef">define </span>dog-class%
+  (<span style="color:#a6e22e">class</span> object%
+    (<span style="color:#a6e22e">field</span> (<span style="color:#a6e22e">name</span> <span style="color:#e6db74">&#34;二哈&#34;</span>)
+           (<span style="color:#a6e22e">weight</span> <span style="color:#ae81ff">10</span>))
+    (<span style="color:#a6e22e">define/public</span> (<span style="color:#a6e22e">in-class-func</span> out-class-func)
+      (<span style="color:#a6e22e">displayln</span> <span style="color:#e6db74">&#34;从类外部获取函数， 数据传递给函数&#34;</span>)
+      (<span style="color:#a6e22e">out-class-func</span> name))
+    (<span style="color:#a6e22e">super-new</span>)))
+<span style="color:#75715e">;;外部函数</span>
+(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">my-func</span> name)
+  (<span style="color:#a6e22e">displayln</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;从类里面获得数据进行处理 ~a&#34;</span> name)))
+(<span style="color:#a6e22e">send</span> (<span style="color:#a6e22e">new</span> dog-class%) in-class-func my-func)
+<span style="color:#75715e">;;执行结果：</span>
+从类外部获取函数<span style="color:#960050;background-color:#1e0010">，</span> 数据传递给函数
+从类里面获得数据进行处理 二哈
+</code></pre></div><p>更进一步，我们还可以添加回调函数使得外部函数做了处理之后再传递回类里面做处理，然后再返回出来，一次往返一次爽，一直往返一直爽。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">(<span style="color:#66d9ef">define </span>(<span style="color:#a6e22e">my-func</span> name some-func)
+  (<span style="color:#a6e22e">displayln</span> (<span style="color:#a6e22e">format</span> <span style="color:#e6db74">&#34;从类里面获得数据进行处理 ~a&#34;</span> name))
+  (<span style="color:#a6e22e">some-func</span> some-arg name))
+<span style="color:#f92672">...</span>
+</code></pre></div><p>通过这种内外互相传递类、类属性、类函数外部变量和外部函数的方式，简直灵活到令人发指。通过这种方式，我们可以优雅地实现你平时在JS/TS世界里面看到的绝大部分数据操作，比如Map/Reduce、filter、find、reserver之类地处理函数，都可以通过这种方式实现。</p>
+<h4 id="0x02-睡觉">0x02: 睡觉</h4>
+<p>在头发有限的情况下，还是早点洗洗睡吧。</p>
+<p>第一次发长公号，没弄什么排版，将就着看吧。反正目前关注我公众号的人只有两个，算上我自己&hellip;.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-scheme" data-lang="scheme">學海無涯<span style="color:#960050;background-color:#1e0010">，</span>回頭是岸
+Thu <span style="color:#ae81ff">18</span> Jul <span style="color:#ae81ff">2019</span> <span style="color:#ae81ff">11</span>:46:12 PM CST
+</code></pre></div>
+            </div>
+        </article>
+
+        <hr />
+
+        <div class="post-info">
+            
+    <p>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg>
+
+        <span class="tag"><a href="tags/dev/">dev</a></span>
+        
+    </p>
+
+            
+  		</div>
+    </main>
+
+            </div>
+
+            
+                <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>2021  ❤︎  岦</span>
+
+    </div>
+
+</footer>
+
+            
+        </div>
+
+        
+
+
+
+
+<script type="text/javascript" src="/bundle.min.dc716e9092c9820b77f96da294d0120aeeb189b5bcea9752309ebea27fd53bbe6b13cffb2aca8ecf32525647ceb7001f76091de4199ac5a3caa432c070247f5b.js" integrity="sha512-3HFukJLJggt3&#43;W2ilNASCu6xibW86pdSMJ6&#43;on/VO75rE8/7KsqOzzJSVkfOtwAfdgkd5BmaxaPKpDLAcCR/Ww=="></script>
+
+
+
+    </body>
+</html>
