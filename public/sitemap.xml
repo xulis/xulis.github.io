@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>localhost/dev/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/echo/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/ops/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/weekly/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>localhost/blog/</loc>
+  </url>
+  
+  <url>
+    <loc>localhost/series/</loc>
+  </url>
+  
+  <url>
+    <loc>localhost/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>localhost/</loc>
+  </url>
+  
+</urlset>
