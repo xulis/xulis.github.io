@@ -3,39 +3,39 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>b-s-x-g.com/dev/</loc>
+    <loc>xulin.me/dev/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/echo/</loc>
+    <loc>xulin.me/echo/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/ops/</loc>
+    <loc>xulin.me/ops/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/weekly/</loc>
+    <loc>xulin.me/weekly/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/blog/</loc>
+    <loc>xulin.me/blog/</loc>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/series/</loc>
+    <loc>xulin.me/series/</loc>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/tags/</loc>
+    <loc>xulin.me/tags/</loc>
   </url>
   
   <url>
-    <loc>b-s-x-g.com/</loc>
+    <loc>xulin.me/</loc>
   </url>
   
 </urlset>
