@@ -2,7 +2,6 @@
     {{ $paginator := .Paginate .Data.Pages }}
     
     <main class="posts">
-<!--        <h1>{{ .Title }}</h1> -->
 
         {{ if .Content }}
             <div class="content">{{ .Content }}</div>
@@ -10,7 +9,6 @@
 
         {{ range $paginator.Pages.GroupByDate "2006" }}
             <div class="posts-group">
-<!--               <div class="post-year">{{ .Key }}</div> -->
 
                 <ul class="posts-list">
                     {{ range .Pages }}
