@@ -1,7 +1,7 @@
 ---
 title: "2300年前的欧几里得算法"
 date: 2016-02-01
-draft: true
+draft: false
 toc: false
 tags:
   - dev
