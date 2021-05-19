@@ -1,8 +1,9 @@
 baseurl: "https://xulin.me"
+
 title: b-s-x-g
 languageCode: en-us
 theme: hello-friend-ng
-paginate: 19
+paginate: 20
 publishDir: docs
 Author:
   name: xuls
