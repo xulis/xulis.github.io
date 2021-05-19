@@ -2,36 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/blog/</loc>
+    <loc>https://xulin.me/blog/</loc>
     <lastmod>2019-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/dev/</loc>
+    <loc>https://xulin.me/tags/dev/</loc>
     <lastmod>2019-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/2019-07-19-js/</loc>
+    <loc>https://xulin.me/blog/2019-07-19-js/</loc>
     <lastmod>2019-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tags/</loc>
+    <loc>https://xulin.me/tags/</loc>
     <lastmod>2019-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/</loc>
+    <loc>https://xulin.me/</loc>
     <lastmod>2019-07-19T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/2016-07-14-golang-try/</loc>
+    <loc>https://xulin.me/blog/2016-07-14-golang-try/</loc>
     <lastmod>2016-07-14T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/2018-06-07-algorithms-gcd/</loc>
+    <loc>https://xulin.me/blog/2018-06-07-algorithms-gcd/</loc>
     <lastmod>2016-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/2016-02-01-ao-and-no/</loc>
+    <loc>https://xulin.me/blog/2016-02-01-ao-and-no/</loc>
     <lastmod>2016-02-01T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/blog/</loc>
+    <loc>https://xulin.me/daily/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>/weekly/</loc>
+    <loc>https://xulin.me/weekly/</loc>
     <priority>0</priority>
   </url><url>
-    <loc>/series/</loc>
+    <loc>https://xulin.me/blog/</loc>
+  </url><url>
+    <loc>https://xulin.me/series/</loc>
   </url>
 </urlset>

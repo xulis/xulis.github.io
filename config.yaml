@@ -1,4 +1,4 @@
-baseurl: ""
+baseurl: "https://xulin.me"
 title: b-s-x-g
 languageCode: en-us
 theme: hello-friend-ng
@@ -48,9 +48,9 @@ menu:
   - identifier: weekly
     name: 週刊
     url: /weekly
-#  - identifier: cs
-#    name: 編碼
-#    url: /cs
+  - identifier: daily
+    name: 每日
+    url: /daily
 #  - identifier: echo
 #    name: 雜談
 #    url: /echo
