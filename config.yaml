@@ -2,13 +2,13 @@ baseurl: ""
 title: b-s-x-g
 languageCode: en-us
 theme: hello-friend-ng
-paginate: 9
+paginate: 19
 publishDir: docs
 Author:
   name: xuls
 params:
   dateform: 'Jan 2, 2006'
-  dateformShort: '1 / 02'
+  dateformShort: '1 / 02 / 2006'
   dateformNum: '2006-01-02'
   dateformNumTime: '2006-01-02 15:04'
   homeSubtitle: 窮且益堅, 不墜青雲之志.
@@ -42,15 +42,15 @@ languages:
         logoHomeLink: /
 menu:
   main:
-  - identifier: ops
-    name: 系統
-    url: /ops
-  - identifier: dev
-    name: 編碼
-    url: /dev
-  - identifier: echo
-    name: 雜談
-    url: /echo
+  - identifier: blog
+    name: 博客
+    url: /blog
   - identifier: weekly
     name: 週刊
     url: /weekly
+#  - identifier: cs
+#    name: 編碼
+#    url: /cs
+#  - identifier: echo
+#    name: 雜談
+#    url: /echo
