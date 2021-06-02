@@ -1,6 +1,7 @@
 base_url = "https://xulin.me"
 title = "(b (s x g))"
 
+output_dir = "docs"
 compile_sass = true
 build_search_index = true
 
