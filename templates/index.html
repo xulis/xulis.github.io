@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main class="section is-medium">
+  <div>
+    <h1 class="home-title">
+      {% block hometitle %}{{ config.extra.hometitle | default(value=config.title) }}{% endblock hometitle %}
+    </h1>
+  
+    <p>
+      {% block subtitle %}{{ config.extra.homeSubtitle }}{% endblock subtitle %}
+    </p>
+  </div>
+</main>
+
+
+{% endblock content %}

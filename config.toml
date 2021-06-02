@@ -1,0 +1,16 @@
+base_url = "https://xulin.me"
+title = "(b (s x g))"
+
+compile_sass = true
+build_search_index = true
+
+[markdown]
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+highlight_theme = "inspired-github"
+
+[extra]
+# Put all your custom variables here
+date_format = "%d / %m / %Y"
+hometitle = "部署小歌"
+homeSubtitle = "窮且益堅, 不墜青雲之志"

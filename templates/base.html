@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="Description" content="部署小哥.">
+
+    <title>{% block title %}{{ config.title }}{% endblock title %}</title>
+
+    <!-- Icon -->
+    <!-- <link rel="icon" type="image/png" href="favicon32.png"> -->
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="main.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+  </head>
+
+  <body>
+    {% include "partials/menu.html" %}
+    <section class="section">
+      <div class="container">
+        {% block content %} {% endblock %}
+      </div>
+    </section>
+  </body>
+  {% include "partials/footer.html" %}
+
+</html>

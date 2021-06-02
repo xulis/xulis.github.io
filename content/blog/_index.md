@@ -1,6 +1,8 @@
-*DevOps &  0x001*
++++
+title = "DevOps & 0x001"
+sort_by = "date"
+template = "list.html"
+page_template = "single.html"
++++
 
-<br></br>
-<br></br>
-<br></br>
-
+*DevOps & 0x001*

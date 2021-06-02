@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="Description" content="部署小哥.">
+
+    <title>(b (s x g))</title>
+
+    <!-- Icon -->
+    <!-- <link rel="icon" type="image/png" href="favicon32.png"> -->
+
+    <!-- CSS -->
+    <!-- <link rel="stylesheet" href="main.css" /> -->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+  </head>
+
+  <body>
+    <nav class="navbar">
+    <div class="navbar-menu is-white">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/">
+                (b (s x g))
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <a class="navbar-item" href="/blog">
+                博客
+            </a>
+            <a class="navbar-item" href="/daily">
+                每日
+            </a>
+            <a class="navbar-item" href="/weekly">
+                周刊
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+      <div class="container">
+        
+<main class="post">
+
+  <h2 class="post-title">
+    线性递归、线性迭代和树形递归
+  </h2>
+
+  <div class="post-content">
+    <p>刚刚看到线性递归、线性迭代和树形递归这几个概念，一时兴起，便模仿起来，也算是入门练手吧，恰巧最近在看Golang这门很简陋(哈哈~~)的语言。</p>
+<pre style="background-color:#ffffff;">
+<code class="language-go" data-lang="go"><span style="font-style:italic;color:#969896;">//线性递归方法求阶乘
+
+</span><span style="font-weight:bold;color:#a71d5d;">package </span><span style="color:#323232;">main
+</span><span style="font-weight:bold;color:#a71d5d;">import </span><span style="color:#183691;">&quot;fmt&quot;
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">main</span><span style="color:#323232;">() {
+    fmt.Println(factorial(</span><span style="color:#0086b3;">6</span><span style="color:#323232;">))
+}
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">factorial</span><span style="color:#323232;">(i </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) (n </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) {
+    </span><span style="font-weight:bold;color:#a71d5d;">if </span><span style="color:#323232;">i </span><span style="font-weight:bold;color:#a71d5d;">== </span><span style="color:#0086b3;">1 </span><span style="color:#323232;">{
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#0086b3;">1
+    </span><span style="color:#323232;">} </span><span style="font-weight:bold;color:#a71d5d;">else </span><span style="color:#323232;">{
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">i </span><span style="font-weight:bold;color:#a71d5d;">* </span><span style="color:#323232;">factorial(i</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#323232;">)
+    }
+}
+</span></code></pre><pre style="background-color:#ffffff;">
+<code class="language-go" data-lang="go"><span style="font-style:italic;color:#969896;">//树形递归方法求某个斐波那契数
+
+</span><span style="font-weight:bold;color:#a71d5d;">package </span><span style="color:#323232;">main
+</span><span style="font-weight:bold;color:#a71d5d;">import </span><span style="color:#183691;">&quot;fmt&quot;
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">main</span><span style="color:#323232;">() {
+    fmt.Println(fib(</span><span style="color:#0086b3;">8</span><span style="color:#323232;">))
+}
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">fib</span><span style="color:#323232;">(i </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) </span><span style="font-weight:bold;color:#0086b3;">int </span><span style="color:#323232;">{
+    </span><span style="font-weight:bold;color:#a71d5d;">switch </span><span style="color:#323232;">i {
+    </span><span style="font-weight:bold;color:#a71d5d;">case </span><span style="color:#0086b3;">0</span><span style="color:#323232;">:
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#0086b3;">0
+    </span><span style="font-weight:bold;color:#a71d5d;">case </span><span style="color:#0086b3;">1</span><span style="color:#323232;">:
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#0086b3;">1
+    </span><span style="font-weight:bold;color:#a71d5d;">default</span><span style="color:#323232;">:
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">fib(i</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#323232;">) </span><span style="font-weight:bold;color:#a71d5d;">+ </span><span style="color:#323232;">fib(i</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">2</span><span style="color:#323232;">)
+    }
+}
+</span></code></pre><pre style="background-color:#ffffff;">
+<code class="language-go" data-lang="go"><span style="font-style:italic;color:#969896;">//线性迭代方法求某个斐波那契数
+
+</span><span style="font-weight:bold;color:#a71d5d;">package </span><span style="color:#323232;">main
+</span><span style="font-weight:bold;color:#a71d5d;">import </span><span style="color:#183691;">&quot;fmt&quot;
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">main</span><span style="color:#323232;">() {
+    fmt.Println(fib(</span><span style="color:#0086b3;">8</span><span style="color:#323232;">))
+}
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">fib</span><span style="color:#323232;">(i </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) (n </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) {
+    </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">fibIter(</span><span style="color:#0086b3;">1</span><span style="color:#323232;">, </span><span style="color:#0086b3;">0</span><span style="color:#323232;">, i)
+}
+</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">fibIter</span><span style="color:#323232;">(x, y, z </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) (n </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) {
+    </span><span style="font-weight:bold;color:#a71d5d;">if </span><span style="color:#323232;">z </span><span style="font-weight:bold;color:#a71d5d;">== </span><span style="color:#0086b3;">0 </span><span style="color:#323232;">{
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">y
+    } </span><span style="font-weight:bold;color:#a71d5d;">else </span><span style="color:#323232;">{
+        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">fibIter(x</span><span style="font-weight:bold;color:#a71d5d;">+</span><span style="color:#323232;">y, x, z</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#323232;">)
+    }
+}
+</span></code></pre>
+  </div>
+
+  <!--
+  <p class="subtitle"><strong>2016-07-14</strong></p>
+  <p class="subtitle"><strong>false</strong></p>
+  -->
+  
+</main>
+
+
+
+      </div>
+    </section>
+  </body>
+  <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <span>Re:San ❤ 1991</span>
+    </div>
+</footer>
+
+
+</html>

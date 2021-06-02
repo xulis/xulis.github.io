@@ -1,0 +1,15 @@
+/* Must be loaded before everything else */
+@import "normalize";
+//@import "prism";
+/* Main stuff */
+@import "variables";
+
+/* Modules */
+@import "menu";
+@import "list";
+@import "default";
+@import "single";
+@import "footer";
+
+
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma.min.css";
