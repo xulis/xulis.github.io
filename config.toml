@@ -14,4 +14,5 @@ highlight_theme = "inspired-github"
 # Put all your custom variables here
 date_format = "%d / %m / %Y"
 hometitle = "部署小歌"
-homeSubtitle = "窮且益堅, 不墜青雲之志"
+homeSubtitle = "穷且益坚 不坠青云之志"
+#homeSubtitle = "窮且益堅, 不墜青雲之志"

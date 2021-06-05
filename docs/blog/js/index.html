@@ -50,7 +50,7 @@
     <blockquote>
 <p>&quot;这是之前发在自己公众号的一篇文章， 直接搬过来&quot;</p>
 </blockquote>
-<p> 在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们~~DevOps~~所说的“运维管理平台。 其实也没什么运不运维，本质上来说就是Web开发。</p>
+<p> 在运维世界里，有时候你可以做一些没有也可以， 但是有就更好的各种xx管理平台。最近， 我也想弄一个你们 <del>DevOps</del> 所说的&quot;运维管理平台&quot;。 其实也没什么运不运维，本质上来说就是Web开发。</p>
 <p> 所以， 我又一股脑地投向了前端娱乐圈。</p>
 <p> 我不是一个实在的人，我每时每刻都在追求那些不切实际的东西，如若要搞前端，自然也不例外，当别人的眼神流露出对我还在玩上个月的框架的鄙视时， 我就恨不得从一开始就没有玩过前端。基于此，我大部分时间都在刷行业动态，GraphQL、LiveView、React牛逼还是Vue牛逼，Angular更新到什么版本了？TypeScript对比ELM有什么优势...刷得精疲力尽之后，开始工作。</p>
 <p> 经过两天这里看一下那里看一下，我学习了一些JavaScript的入门知识，写下此文以作记录，考虑到要除去中间开小差的时间，取名《JavaScript一日游》，主要记录JavaScript中的惯用编程范式。</p>
@@ -81,15 +81,15 @@
 <p> 回调呢，专业术语就是：回来之后再调用它丫的，呸呸呸，是“is any executable code that is passed as an argument to other code that is expected to call back (execute) the argument at a given time.，百科抄的，甮管了，大白话就是一段代码(过程、即函数)，给它起个名字叫回调函数，它作为参数的方式传递给另一个函数，使得函数可以控制这个回调函数啥时候跑、怎么跑，跑不跑。在我们的例子里，乌龟是兔子的女朋友，所以乌龟想要兔子怎么跑就得怎么跑，那么兔子就得做回调函数， 给乌龟使唤。</p>
 <p> 大概是这样：</p>
 <pre style="background-color:#ffffff;">
-<code class="language-scheme" data-lang="scheme"><span style="color:#323232;">#lang racket
+<code class="language-lisp" data-lang="lisp"><span style="color:#323232;">#lang racket
 (define (🐇 str)
-  (displayln (format &quot;我可以出发了 ~a&quot; str)))
+  (displayln (</span><span style="color:#62a35c;">format </span><span style="color:#183691;">&quot;我可以出发了 ~a&quot;</span><span style="color:#323232;"> str)))
 (define (🐢 callback)
-  (displayln &quot;🐢🐢🐢...&quot;)
-  (define    ZHANAN &quot;🐇&quot;)
+  (displayln </span><span style="color:#183691;">&quot;🐢🐢🐢...&quot;</span><span style="color:#323232;">)
+  (define    ZHANAN </span><span style="color:#183691;">&quot;🐇&quot;</span><span style="color:#323232;">)
   (callback  ZHANAN    ))
-(🐢 🐇) ;;兔子作为参数传递给乌龟
-执行结果：
+(🐢 🐇) </span><span style="font-style:italic;color:#969896;">;;兔子作为参数传递给乌龟
+</span><span style="color:#323232;">执行结果：
 🐢🐢🐢...
 我可以出发了 🐇
 </span></code></pre>
@@ -98,8 +98,7 @@
 <h4 id="0x01-mian-xiang-dui-xiang-x-han-shu-shi-bian-cheng-zhen-noxi-pi-shi">0x01: 面向对象 x 函数式编程 = 真の嬉皮士</h4>
 <p> 刚才我们谈论的是以函数传递给函数的方式实现过程抽象，以同样的功能为例，我们对比一下面向对象范式里的做法。在面向对象(👧)编程里，核心范式就是定义一类，然后给类加属性、加方法，一个最简单的例子是酱紫:</p>
 <pre style="background-color:#ffffff;">
-<code class="language-scheme" data-lang="scheme"><span style="color:#323232;">
-#lang racket
+<code class="language-scheme" data-lang="scheme"><span style="color:#323232;">#lang racket
 (require racket/class)
 (define dog-class%
   (class object%
