@@ -54,18 +54,18 @@
 <br></br></p>
 <p>PS: 欧几里得大概是很无聊的，那么奇怪的规律也能找到。</p>
 <p><strong>实现:</strong></p>
-<pre style="background-color:#ffffff;">
-<code class="language-elixir" data-lang="elixir"><span style="font-weight:bold;color:#a71d5d;">defmodule </span><span style="color:#0086b3;">Alt </span><span style="font-weight:bold;color:#a71d5d;">do
-  def </span><span style="font-weight:bold;color:#795da3;">gcd</span><span style="color:#323232;">(p, </span><span style="color:#0086b3;">0</span><span style="color:#323232;">), </span><span style="color:#0086b3;">do:</span><span style="color:#323232;"> p
-  </span><span style="font-weight:bold;color:#a71d5d;">def </span><span style="font-weight:bold;color:#795da3;">gcd</span><span style="color:#323232;">(p, q), </span><span style="color:#0086b3;">do:</span><span style="color:#323232;"> gcd(q, rem(p, q))
-</span><span style="font-weight:bold;color:#a71d5d;">end
+<pre><code class="language-elixir" data-lang="elixir">defmodule Alt do
+  def gcd(p, 0), do: p
+  def gcd(p, q), do: gcd(q, rem(p, q))
+end
 
 
-</span><span style="color:#0086b3;">IO</span><span style="color:#323232;">.puts </span><span style="color:#0086b3;">Alt</span><span style="color:#323232;">.gcd(</span><span style="color:#0086b3;">10</span><span style="color:#323232;">,</span><span style="color:#0086b3;">4</span><span style="color:#323232;">)
-</span><span style="font-style:italic;color:#969896;">#-&gt; 2 
-</span><span style="color:#0086b3;">IO</span><span style="color:#323232;">.puts </span><span style="color:#0086b3;">Alt</span><span style="color:#323232;">.gcd(</span><span style="color:#0086b3;">10</span><span style="color:#323232;">,</span><span style="color:#0086b3;">0</span><span style="color:#323232;">)
-</span><span style="font-style:italic;color:#969896;">#-&gt; 10
-</span></code></pre>
+IO.puts Alt.gcd(10,4)
+#-&gt; 2 
+IO.puts Alt.gcd(10,0)
+#-&gt; 10
+</code></pre>
+
   </div>
 
   <!--

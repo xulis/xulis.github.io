@@ -51,30 +51,28 @@
 <em>正则序：先展开过程，再求值。
 应用序：先求值，再代入过程。</em></p>
 <p>对于以下代码:</p>
-<pre style="background-color:#ffffff;">
-<code class="language-scheme" data-lang="scheme"><span style="color:#323232;">(define (p) (p))
+<pre><code class="language-scheme" data-lang="scheme">(define (p) (p))
 
 (define (test x y)
   (if (= x 0)
 	0
 	y))
 (test 0 (p))
-</span></code></pre>
+</code></pre>
 <p>如果解释器采用的是应用序，则程序会不断地执行，因为需要求值<em>p</em>函数，然而<em>p</em>函数返回自己，因此进入死循环。</p>
-<pre style="background-color:#ffffff;">
-<code class="language-scheme" data-lang="scheme"><span style="color:#323232;">(test 0 (p)) 
+<pre><code class="language-scheme" data-lang="scheme">(test 0 (p)) 
 (test 0 (p)) 
 (test 0 (p))
 ...
-</span></code></pre>
+</code></pre>
 <hr />
 <p>而对于采用正则序的解释器，程序则能成功输出<code>0</code>，因为，解释器先展开过程，再求值(如果表达式有用到，而这里因为x=0，并没有用到<em>p</em>函数)，过程是这样的:</p>
-<pre style="background-color:#ffffff;">
-<code class="language-scheme" data-lang="scheme"><span style="color:#323232;">(test 0 (p)) 
+<pre><code class="language-scheme" data-lang="scheme">(test 0 (p)) 
  (if (= 0 0) 0 (p)) 
  (if #t 0 (p)) 
  0 
-</span></code></pre>
+</code></pre>
+
   </div>
 
   <!--

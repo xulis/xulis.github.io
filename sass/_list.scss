@@ -14,7 +14,7 @@
     justify-content: center;
     margin: 0 0 30px 0;
    // font-style: italic;
-    font-size: 16px;
+    font-size: 1rem;
   }
 
   &-group {
@@ -30,7 +30,7 @@
     padding: 10px;
     list-style: none;
     text-align: center;
-    font-size: 22px;
+    font-size: 1.25rem;
   }
 
   .post {
@@ -56,6 +56,7 @@
       flex-shrink: 0;
       margin-left: 1em;
       font-size: 12px;
+      color: darkgray;
     }
   }
 }

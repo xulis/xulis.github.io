@@ -48,58 +48,58 @@
 
   <div class="post-content">
     <p>刚刚看到线性递归、线性迭代和树形递归这几个概念，一时兴起，便模仿起来，也算是入门练手吧，恰巧最近在看Golang这门很简陋(哈哈~~)的语言。</p>
-<pre style="background-color:#ffffff;">
-<code class="language-go" data-lang="go"><span style="font-style:italic;color:#969896;">//线性递归方法求阶乘
+<pre><code class="language-go" data-lang="go">//线性递归方法求阶乘
 
-</span><span style="font-weight:bold;color:#a71d5d;">package </span><span style="color:#323232;">main
-</span><span style="font-weight:bold;color:#a71d5d;">import </span><span style="color:#183691;">&quot;fmt&quot;
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">main</span><span style="color:#323232;">() {
-    fmt.Println(factorial(</span><span style="color:#0086b3;">6</span><span style="color:#323232;">))
+package main
+import &quot;fmt&quot;
+func main() {
+    fmt.Println(factorial(6))
 }
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">factorial</span><span style="color:#323232;">(i </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) (n </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) {
-    </span><span style="font-weight:bold;color:#a71d5d;">if </span><span style="color:#323232;">i </span><span style="font-weight:bold;color:#a71d5d;">== </span><span style="color:#0086b3;">1 </span><span style="color:#323232;">{
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#0086b3;">1
-    </span><span style="color:#323232;">} </span><span style="font-weight:bold;color:#a71d5d;">else </span><span style="color:#323232;">{
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">i </span><span style="font-weight:bold;color:#a71d5d;">* </span><span style="color:#323232;">factorial(i</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#323232;">)
+func factorial(i int) (n int) {
+    if i == 1 {
+        return 1
+    } else {
+        return i * factorial(i-1)
     }
 }
-</span></code></pre><pre style="background-color:#ffffff;">
-<code class="language-go" data-lang="go"><span style="font-style:italic;color:#969896;">//树形递归方法求某个斐波那契数
+</code></pre>
+<pre><code class="language-go" data-lang="go">//树形递归方法求某个斐波那契数
 
-</span><span style="font-weight:bold;color:#a71d5d;">package </span><span style="color:#323232;">main
-</span><span style="font-weight:bold;color:#a71d5d;">import </span><span style="color:#183691;">&quot;fmt&quot;
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">main</span><span style="color:#323232;">() {
-    fmt.Println(fib(</span><span style="color:#0086b3;">8</span><span style="color:#323232;">))
+package main
+import &quot;fmt&quot;
+func main() {
+    fmt.Println(fib(8))
 }
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">fib</span><span style="color:#323232;">(i </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) </span><span style="font-weight:bold;color:#0086b3;">int </span><span style="color:#323232;">{
-    </span><span style="font-weight:bold;color:#a71d5d;">switch </span><span style="color:#323232;">i {
-    </span><span style="font-weight:bold;color:#a71d5d;">case </span><span style="color:#0086b3;">0</span><span style="color:#323232;">:
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#0086b3;">0
-    </span><span style="font-weight:bold;color:#a71d5d;">case </span><span style="color:#0086b3;">1</span><span style="color:#323232;">:
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#0086b3;">1
-    </span><span style="font-weight:bold;color:#a71d5d;">default</span><span style="color:#323232;">:
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">fib(i</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#323232;">) </span><span style="font-weight:bold;color:#a71d5d;">+ </span><span style="color:#323232;">fib(i</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">2</span><span style="color:#323232;">)
+func fib(i int) int {
+    switch i {
+    case 0:
+        return 0
+    case 1:
+        return 1
+    default:
+        return fib(i-1) + fib(i-2)
     }
 }
-</span></code></pre><pre style="background-color:#ffffff;">
-<code class="language-go" data-lang="go"><span style="font-style:italic;color:#969896;">//线性迭代方法求某个斐波那契数
+</code></pre>
+<pre><code class="language-go" data-lang="go">//线性迭代方法求某个斐波那契数
 
-</span><span style="font-weight:bold;color:#a71d5d;">package </span><span style="color:#323232;">main
-</span><span style="font-weight:bold;color:#a71d5d;">import </span><span style="color:#183691;">&quot;fmt&quot;
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">main</span><span style="color:#323232;">() {
-    fmt.Println(fib(</span><span style="color:#0086b3;">8</span><span style="color:#323232;">))
+package main
+import &quot;fmt&quot;
+func main() {
+    fmt.Println(fib(8))
 }
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">fib</span><span style="color:#323232;">(i </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) (n </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) {
-    </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">fibIter(</span><span style="color:#0086b3;">1</span><span style="color:#323232;">, </span><span style="color:#0086b3;">0</span><span style="color:#323232;">, i)
+func fib(i int) (n int) {
+    return fibIter(1, 0, i)
 }
-</span><span style="font-weight:bold;color:#a71d5d;">func </span><span style="font-weight:bold;color:#795da3;">fibIter</span><span style="color:#323232;">(x, y, z </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) (n </span><span style="font-weight:bold;color:#0086b3;">int</span><span style="color:#323232;">) {
-    </span><span style="font-weight:bold;color:#a71d5d;">if </span><span style="color:#323232;">z </span><span style="font-weight:bold;color:#a71d5d;">== </span><span style="color:#0086b3;">0 </span><span style="color:#323232;">{
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">y
-    } </span><span style="font-weight:bold;color:#a71d5d;">else </span><span style="color:#323232;">{
-        </span><span style="font-weight:bold;color:#a71d5d;">return </span><span style="color:#323232;">fibIter(x</span><span style="font-weight:bold;color:#a71d5d;">+</span><span style="color:#323232;">y, x, z</span><span style="font-weight:bold;color:#a71d5d;">-</span><span style="color:#0086b3;">1</span><span style="color:#323232;">)
+func fibIter(x, y, z int) (n int) {
+    if z == 0 {
+        return y
+    } else {
+        return fibIter(x+y, x, z-1)
     }
 }
-</span></code></pre>
+</code></pre>
+
   </div>
 
   <!--
