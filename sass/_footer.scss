@@ -25,6 +25,22 @@
     font-size: 1rem;
 
 
+    & > *:hover {
+      cursor: crosshair;
+      position: relative;
+    }
+
+    /*
+    & > *[title]:hover::after {
+      content: attr(title);
+      position: absolute;
+      top: -50px;
+      left: 0;
+      color: gray;
+    }
+    */
+
+
     & > *:not(:last-child)::after {
       content: "•";
       padding: 0 5px;
