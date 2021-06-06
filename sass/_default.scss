@@ -37,24 +37,25 @@ h2, h3, h4, h5, h6 {
   line-height: 1.5;
   margin: 25px 0 20px 0;
   border-bottom: 1px solid #d3d3d3;
-  color: gray;
-  font-weight: bold;
+  //color: gray;
+  //font-weight: bold;
+  font-weight: 500;
 }
 
 h1 {
-  font-size: 2.625rem;
+  font-size: 2.725rem;
 }
 
 h2 {
-  font-size: 1.725rem;
+  font-size: 2rem;
 }
 
 h3 {
-  font-size: 1.475rem;
+  font-size: 1.575rem;
 }
 
 h4 {
-  font-size: 1.325rem;
+  font-size: 1.425rem;
 }
 
 a {
@@ -63,7 +64,7 @@ a {
 
 img {
   display: block;
-  max-width: 100%;
+  max-width: 85%;
   margin: 20px auto;
   border-radius: 5px;
   box-shadow: 0 0 10px grey;
@@ -277,8 +278,12 @@ hr {
 }
 
 .home-title {
-  font-size: 2.65rem;
+  font-size: 3.5rem;
   margin: 0 auto;
+}
+
+.home-sub-title {
+  font-size: 1.5rem;
 }
 
 .pagination {
