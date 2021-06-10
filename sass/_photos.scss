@@ -2,7 +2,17 @@
   &-list {
 
   }
+  &-title {
+    writing-mode: vertical-lr;
+    font-size: 1.125rem;
+    display: flex;
+  }
+  &-item {
+    align-self: center;
+  }
   img {
     width: auto;
+    margin: auto;
+    max-width: 100%;
   }
 }

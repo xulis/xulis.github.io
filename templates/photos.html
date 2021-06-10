@@ -4,33 +4,33 @@
 {% block content %}
 <main class="photos">
 
-  <div class="photos-content">
-    {{ section.content | safe }}
-  </div>
-  
-  <div class="tile is-ancestor photos-list">
-
+  <div class="tile is-ancestor is-vertical photos-list">
     <div class="tile is-align-items-start">
-    {% for page in paginator.pages %}
 
-
-      {% if loop.first %}
-      <div class="tile is-parent is-vertical">
+      {% if paginator.paginate_by > paginator.total_pages %}
+        {% set column_by = paginator.total_pages / 3 | int %}
+      {% else %}
+        {% set column_by = paginator.paginate_by / 3 | int %}
       {% endif %}
-      
-        <div class="tile is-child">
-          {{ page.content | safe }}
-        </div>
 
-      {% if loop.index is divisibleby(5) or loop.last%}
+      <div class="tile is-parent is-vertical photos-left">
+      {% for page in paginator.pages | slice(start=0, end=column_by) %}
+        {% include "partials/photo.html" %}
+      {% endfor %}
       </div>
-      {% endif %}
 
-      {% if loop.index is divisibleby(5) and not loop.last %}
-      <div class="tile is-parent is-vertical">
-      {% endif %}
+      <div class="tile is-parent is-vertical photos-left">
+      {% for page in paginator.pages | slice(start=column_by, end=2*column_by) %}
+        {% include "partials/photo.html" %}
+      {% endfor %}
+      </div>
 
-    {% endfor %}
+      <div class="tile is-parent is-vertical photos-left">
+      {% for page in paginator.pages | slice(start=2*column_by) %}
+        {% include "partials/photo.html" %}
+      {% endfor %}
+      </div>
+
     </div>
   </div>
 
