@@ -1,8 +1,11 @@
 <div class="tile is-child photos-item">
   <div class="columns is-gapless ">
-    <div class="photos-content">
-      {{ page.content | safe }}
-    </div>
+    <a href="{{ page.permalink | safe }}" class="hover-cursor">
+      <div class="photos-content">
+        {{ page.content | safe }}
+      </div>
+    </a>
+
     <div class="photos-title">
       {{ page.title }}
     </div>
