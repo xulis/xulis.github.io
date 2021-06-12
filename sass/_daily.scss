@@ -1,0 +1,30 @@
+.post-daily {
+  text-align: left;
+  padding: 2% 8% 4% 8%;
+  margin: 80px 12%;
+  border: 3px solid #403c8257;
+  border-radius: 10px;
+}
+
+
+.poetry {
+  writing-mode: vertical-rl;
+  margin: auto;
+
+  &-title {
+    display: inline-flex;
+    font-size: 2rem;
+  }
+
+  &-author {
+    display: inline-flex;
+    font-size: 1.25rem;
+  }
+
+  &-content {
+    display: flex;
+    font-size: 1.725rem;
+  }
+}
+
+
