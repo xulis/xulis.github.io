@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="Description" content="部署小哥.">
+
+    <title>(b (s x g))</title>
+
+    <!-- Icon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZZLRFRNRH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-5ZZLRFRNRH');
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar" >
+    <div class="navbar-menu is-white is-active">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/">
+                (b (s x g))
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <a class="navbar-item" href="/blog">
+                博客
+            </a>
+            <a class="navbar-item" href="/daily">
+                每日
+            </a>
+            <a class="navbar-item" href="/weekly">
+                周刊
+            </a>
+            <a class="navbar-item" href="/photos">
+                相册
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+      <div class="container">
+        
+<main class="posts">
+
+  <div class="posts-content">
+    <p><em>流水账.</em></p>
+
+  </div>
+  
+  
+  <div class="post-daily">
+    <h2 class="post-title">
+      2021.05.25
+    </h2>
+    <div class="post-content">
+      <p> 当事人现在非常感慨：做废物真是太难受了！</p>
+<p> 今天面试遇到一个比较懂技术的面试官，问的好些问题我都回答不上来，实在尴尬。虽然我对面试通常是持积极心态，很多时候是抱着学习的心态参加面试的，但这一次，还是受到了些打击——因为意识到自己实在太废啦 😞</p>
+<p>   期间我还闹了些笑话，出洋相了。面试官问我 <strong>HTTP2</strong> 和 <strong>HTTP1.1</strong> 有什么区别的，我说「HTTP2可以多个客户端共用链接，比如一个局域网里面有一千台电脑，它们到服务端只需要一个链接」面试官直接听懵了，我能够理解他的匪夷所思，甚至隔着电话都能感受到他那尴尬而不失礼貌的微笑，对方直呼「好吧好吧....」。</p>
+<p> 我也知道这答案太劲爆了！那么我为什么会说出这个答案呢？刚才我洗澡的时候想起来了，在很久很久以前，<strong>HTTP2</strong>刚推出的时候，我有了解一下，其中 <strong>HTTP2</strong>有一个特性叫 <strong>多路复用</strong>（<strong>multiplexing</strong>），这个功能可以使得客户端在同一个连接中连续发送多个请求，然后当时就想到一个场景，假设一个局域网有一千台电脑(或者更多)，那只需要在出口的地方和服务器端建立一个连接，那岂不是这个局域网所有的请求到服务端都能共享一个链接！妙哉！哈哈～时间久了，脑子里的这个场景就变成了面试中那个回答。</p>
+<p> 总的来说，这个面试还是蛮有意义，让我意识到我的知识其实还是蛮薄弱的，在接下来的一段时间里，学习一下《图解TCP/IP》和《图解HTTP》吧。没文化真是容易闹笑话，做废物真是太难受了。✊</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-25</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    <h2 class="post-title">
+      2021.05.24
+    </h2>
+    <div class="post-content">
+      <p> 今天想到一个事情，有点懊恼。</p>
+<p> 就是想起有一次去欢聚时代面试，我撒了个「半谎」。那什么是「半谎」呢？事情是这样的，面试官问我有没有遇到过Prometheus挂掉(内存泄漏)的情况，我当时有点激动，因为就在面试前几天同事才跟我聊到说他遇到Prometheus会OOM，而且是DB超过100G的时候会出现。于是我就说我遇到过，Prometheus磁盘使用超过100G的时候会OOM，具体原因不知道是什么，我还慌称升级到26版本可以解决这个问题，因为同事有提到github issue说那是一个Bug，而我用的最新版本并没遇到这样的问题。</p>
+<p> 所以这就是我所谓的「半谎」。它包含一部分事实，但并不是全部都是事实，都是我从同事那里听来的，但其实我自己并没有遇到过Prometheus OOM的情况，我在线上系统上百台服务器， 在三台16C32G的服务器上放日志系统和监控系统也稳得一逼。</p>
+<p> 尽管只是「半慌」，我还是有些后悔自己说出这样的话。那个面试不通过很可能也是因为面试官觉得我在这一点上忽悠了他们。事实上我也不觉得磁盘达到100G会导致Prometheus OOM (<del>逗谁呢</del>)，只是当时鬼迷心窍，想着附和面试官的故障场景。</p>
+<p> 一份工作的时长通常是三年不等，但是人的品质会伴随一生。为了短期利益违背真我，其实是下策，我愿以此为戒，在今后的日子里要更加正直坦荡 ，知之为知之，不知为不知，是知也！</p>
+<p> 不过话说回来，我一直觉得面试不仅是能力考核，它还是一种技术交流的方式，我通常会非常珍惜。但是我面过两次欢聚时代，他们的面试给我的感觉就纯粹是能力考核了，而且面试官有点高斗，果然修身这件事上，是不分面试官和求职者的。</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-24</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    <h2 class="post-title">
+      2021.05.21
+    </h2>
+    <div class="post-content">
+      <p> 今天得知一个消息，因为公司的组织架构调整，有些一起玩得还不错的同事也许以后会很少见面了，这让我着实伤感。</p>
+<p> 我想起了贾樟柯的《山河故人》，电影的海报上直白地写着「每个人只能陪你走一段路」。人的一生，总是意外地与人相遇，再然后与他们别离。有时候别离并不那么容易察觉，等你回过神来，只得后悔那些一起仰望天空的日子里，笑得太少。</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-21</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    <h2 class="post-title">
+      2021.05.20
+    </h2>
+    <div class="post-content">
+      <p> 今天是520。从深圳回到广州，可以明显地感觉到深圳这个城市对于这种节日要更隆重一些，大概是因为这个城市有更多的年轻人。</p>
+<p> 我不喜欢把日子特殊化。就连生日我也不喜欢特殊对待，从悲观的角度想，我觉得这种日子没什么特别的，或者说，不会有特别的日子会在固定的时间里出现，从乐观的角度想，我觉得每一天都是独一无二的，每一个日期，在日历中都只有一次，因此每一天都应该认真对待。</p>
+<p> 尽管如此，我也会受外界影响。</p>
+<p> 要说今天最能触动我的，大概是《情书》在今天重映了。这让我想起了年轻(现在29了😞)的时候，虽然身上没有幸运地发生爱情，但却一直有一份对纯爱的向往。</p>
+<p> 如今，我的心也像 J·K罗琳笔下的男巫的毛心脏那般， 慢慢长毛了，能够救它的人，在哪呢？</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-20</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    <h2 class="post-title">
+      2021.05.19
+    </h2>
+    <div class="post-content">
+      <p> 要说今天发生的最大的事情，当然是新垣结衣结婚了！尽管互联网上哀嚎遍野，但大家都知道其中大部分是瞎起哄、开玩笑的。之所以说是“大部分”，是因为我相信还是会有小部分像我这样真正地悲伤的。</p>
+<p> 如果单论长相，其实好看的明星多了去了。但是真正想让人发自内心喜欢，单靠脸庞是不够的，那必须是要有一个完美的形象加持的。而这形象的加持，靠的是高质量的作品，就如Gakki依托《恋空》、《李狗嗨》和她的其他作品一样。</p>
+<p> 那些年看了很多日剧。荧幕上熟悉的面孔，阿部宽、堺雅人、Gakki等等历历在目。事实上，在国产剧质量普遍偏低的大背景下，控制自己的信息输入是非常重要的，因为这些文化潜移默化地构筑起了你的内心世界，我非常庆幸在我的成长过程中通过豆瓣、IMDB、知乎的渠道了解到了那些更加优秀的文化。</p>
+<p> 然而Gakki结婚让我意识到了一个事情——它们都在离我们而去。就好比某个明星退隐，某个演员去世一样，那些陪伴我们长大的流行音乐，电影电视剧，都慢慢开始封存于历史当中。有一天我看《大明王朝》时想到，现在的年轻人还会看这些电视剧吗？你会看到很多流量明星耍耍嘴皮子几千万，至少在文化这一点，我觉得世界是趋于粗鄙化的，它不一定是越来越好的！</p>
+<p> 想到这里，就有点悲伤，与此同时，我也迫不及待地想去搜刮那些“旧”的影视作品。</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-19</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+
+
+  <nav class="pagination">
+    
+        <a class="previous" href="https:&#x2F;&#x2F;xulin.me&#x2F;daily&#x2F;page&#x2F;2&#x2F;">⎝</a>
+    
+        <span class="current-idx"> 3</span> 
+    
+        <span class="not-exist">⎠</span>
+    
+  </nav>
+
+  <!--
+  <nav class="pagination is-rounded is-small" role="navigation" aria-label="pagination">
+    
+    <a class="pagination-previous" href="https:&#x2F;&#x2F;xulin.me&#x2F;daily&#x2F;page&#x2F;2&#x2F;">Previous</a>
+    
+
+    <ul class="pagination-list">
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+      
+    
+      
+      <li><a class="pagination-link is-current" aria-label="Page 3" aria-current="page">3</a></li>
+      
+    
+    </ul>
+
+    
+    <a class="pagination-next" diabled>Next page</a>
+    
+  </nav>
+-->
+</main>
+
+
+      </div>
+    </section>
+  </body>
+  <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <a href="/about">ReSan</a>
+            <span>1991</span>
+        </div>
+    </div>
+</footer>
+
+
+</html>
