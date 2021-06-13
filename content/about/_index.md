@@ -1,14 +1,17 @@
 +++
-title = "DevOps & 0x001"
+title = "about"
 sort_by = "date"
 template = "about.html"
 +++
 
 
 
-**一 个 人.**
 
-<br></br>
 
-xuls2020@icloud.com
+<div style="font-size:3rem;">
+  ﹅
+</div>
 
+
+
+*xuls2020@icloud.com*
