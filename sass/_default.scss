@@ -303,6 +303,12 @@ hr {
 }
 
 .hover-cursor:hover {
-      cursor: crosshair;
-      position: relative;
+  cursor: crosshair;
+  position: relative;
+}
+
+.wrapper {
+  display: flex;
+  flex: wrap;
+  order: row;
 }

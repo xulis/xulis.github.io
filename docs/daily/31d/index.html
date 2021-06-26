@@ -62,18 +62,42 @@
 <main class="post">
 
   <h2 class="post-title">
-    2021.06.01
+    2021.06.26
   </h2>
 
   <div class="post-content">
-    <p align="center">
-&emsp;虚度光阴 +1day
-</p>
+    <p> 今天试试定投赚差价 -. -</p>
+<hr />
+<div>
+    <div id="chart"></div>
+    <script>
+    var chart = c3.generate({
+    	data: {
+    		columns: [
+    		['aip', 30,10, 30, 20, 30, 40,20,10,25,30],
+    		],
+    		axes: {
+    			aip: 'y'
+    		},
+    		type: 'bar'
+    	},
+    	axis: {
+    		y: {
+    			show: true
+    		}
+    	},
+    	regions: [
+    	    {axis: 'y', end: 30, class: 'region-aip'}
+    	]
+	   });
+    chart.transform('area-spline', 'aip');
+    </script>
+</div>
 
   </div>
 
   <!--
-  <p class="subtitle"><strong>2021-06-01</strong></p>
+  <p class="subtitle"><strong>2021-06-26</strong></p>
   <p class="subtitle"><strong>false</strong></p>
   -->
   

@@ -15,13 +15,17 @@
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/main.css">
 
+    <!-- Ext Chart -->
+    <link href="/static/c3.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="/static/c3.min.js"></script>
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZZLRFRNRH"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-5ZZLRFRNRH');
     </script>
   </head>
@@ -62,6 +66,46 @@
 
   </div>
   
+  
+  <div class="post-daily">
+    <h2 class="post-title">
+      2021.06.26
+    </h2>
+    <div class="post-content">
+      <p> 今天试试定投赚差价 -. -</p>
+<hr />
+<div>
+    <div id="chart"></div>
+    <script>
+    var chart = c3.generate({
+    	data: {
+    		columns: [
+    		['aip', 30,10, 30, 20, 30, 40,20,10,25,30],
+    		],
+    		axes: {
+    			aip: 'y'
+    		},
+    		type: 'bar'
+    	},
+    	axis: {
+    		y: {
+    			show: true
+    		}
+    	},
+    	regions: [
+    	    {axis: 'y', end: 30, class: 'region-aip'}
+    	]
+	   });
+    chart.transform('area-spline', 'aip');
+    </script>
+</div>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-06-26</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
   
   <div class="post-daily">
     <h2 class="post-title">
@@ -185,26 +229,6 @@ A=P(1 + r/n)<sup>nt</sup>
     </div>
     <!--
     <p class="subtitle"><strong>2021-06-17</strong></p>
-    <p class="subtitle"><strong>false</strong></p>
-    -->
-  </div>
-  
-  <div class="post-daily">
-    <h2 class="post-title">
-      2021.06.16
-    </h2>
-    <div class="post-content">
-      <p> 忙活了一整天，完成了一些之前堆积的工作。尽管只是处理了一些小事，这种「正常」的工作状态却似好久没有过了。在过去几个月甚至更长的时间里，我都处在焦虑和迷茫之中，想这想那惶惶不可终日，干活没心思，学习学不进，今天开始似乎有些好转，难不成中午那一分钟蹩脚的冥想起作用了？？？今天的日更是今天的结束，也是明天的开始。</p>
-<div style="
-            font-size:78px;
-            text-align:center"
- >
-  焦虑退散 🧘🏻‍♂️
-</div>
-
-    </div>
-    <!--
-    <p class="subtitle"><strong>2021-06-16</strong></p>
     <p class="subtitle"><strong>false</strong></p>
     -->
   </div>
