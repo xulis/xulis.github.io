@@ -1,5 +1,5 @@
 base_url = "https://xulin.me"
-title = "(Re (s a n))"
+title = "(Re (S a n))"
 
 output_dir = "docs"
 compile_sass = true
