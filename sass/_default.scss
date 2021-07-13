@@ -16,7 +16,7 @@ body {
   padding: 0;
   font-family: 'fzskbxkjw', 'cwtex', 'STHeiti', 'Microsoft Yahei', 'Hiragino Sans GB', 'lucida grande', 'Inter UI', -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI",  Helvetica, Arial, sans-serif;
   font-display: auto;
-  font-size: 1rem;
+  font-size: 1.125rem;
   line-height: 1.54;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -195,9 +195,9 @@ blockquote {
 }
 
 ul, ol {
-  //margin-left: 40px;
-  padding: 0;
-  margin: 10px 20px;
+  padding: 10px;
+  margin: 10px 10px 10px 30px;
+  line-height: 30px;
 }
 
 ol ol {
