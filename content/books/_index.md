@@ -1,5 +1,5 @@
 +++
-title = "weekly & 0x100"
+title = "小册"
 sort_by = "date"
 template = "list.html"
 page_template = "single.html"

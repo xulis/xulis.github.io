@@ -26,6 +26,9 @@
         <lastmod>2019-07-19</lastmod>
     </url>
     <url>
+        <loc>https://xulin.me/books/</loc>
+    </url>
+    <url>
         <loc>https://xulin.me/daily/</loc>
     </url>
     <url>
@@ -290,8 +293,5 @@
     <url>
         <loc>https://xulin.me/photos/yellow-flowers/</loc>
         <lastmod>2021-06-12</lastmod>
-    </url>
-    <url>
-        <loc>https://xulin.me/weekly/</loc>
     </url>
 </urlset>

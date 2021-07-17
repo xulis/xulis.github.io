@@ -6,7 +6,6 @@ compile_sass = true
 build_search_index = true
 
 [markdown]
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
 highlight_code = false
 highlight_theme = "inspired-github"
 
@@ -14,4 +13,3 @@ highlight_theme = "inspired-github"
 date_format = "%d / %m / %Y"
 hometitle = "部署小歌"
 homeSubtitle = "穷且益坚 不坠青云之志"
-#homeSubtitle = "窮且益堅, 不墜青雲之志"
