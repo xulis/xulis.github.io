@@ -9,7 +9,7 @@ template = "about.html"
   ﹅
 </div>
 
-*xuls2020@icloud.com*
+**xuls2020@icloud.com**
 
 <br/>
 
