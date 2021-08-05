@@ -77,11 +77,11 @@
 <p>也就是，从0和1开始，之后的斐波那契数由前面两个相加而成，既：</p>
 <p><em>0, 1, 1, 2, 3, 5, 8, 13, 21...</em></p>
 <p>在计算机领域，递归是最基础也是最核心的抽象技术，在很多领域我们都会使用这样一种技法:</p>
-<pre><code class="language-rust" data-lang="rust">fn fib(n: i32) -&gt; i32 {
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn fib(n: i32) -> i32 {
   match n {
-    0 =&gt; 0,
-    1 =&gt; 1,
-    _ =&gt; fib(n-1) + fib(n-2)
+    0 => 0,
+    1 => 1,
+    _ => fib(n-1) + fib(n-2)
   }
 }
 </code></pre>

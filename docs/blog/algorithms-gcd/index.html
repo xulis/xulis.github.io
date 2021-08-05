@@ -73,16 +73,16 @@
 <br></br></p>
 <p>PS: 欧几里得大概是很无聊的，那么奇怪的规律也能找到。</p>
 <p><strong>实现:</strong></p>
-<pre><code class="language-elixir" data-lang="elixir">defmodule Alt do
+<pre data-lang="elixir" class="language-elixir "><code class="language-elixir" data-lang="elixir">defmodule Alt do
   def gcd(p, 0), do: p
   def gcd(p, q), do: gcd(q, rem(p, q))
 end
 
 
 IO.puts Alt.gcd(10,4)
-#-&gt; 2 
+#-> 2 
 IO.puts Alt.gcd(10,0)
-#-&gt; 10
+#-> 10
 </code></pre>
 
   </div>
