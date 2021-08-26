@@ -4,8 +4,17 @@
   margin: 80px 12%;
   border: 3px solid #403c8257;
   border-radius: 10px;
+  position: relative;
 }
 
+.daily-stat {
+  position: absolute;
+  right: -30px;
+  top: -50px;
+  font-size: 64px;
+  transform: rotate(3deg);
+
+}
 .music-box {
   display: flex;
   justify-content: center;
