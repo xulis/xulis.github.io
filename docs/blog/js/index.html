@@ -77,8 +77,8 @@
 <h3 id="0x00-hui-diao-callback">0x00: 回调 (callback)</h3>
 <p> 选择NodeJS就是选择异步编程，就如前文所说，在很多时候你是程序和事件(event)一起写，程序就一步一步跑，事件会被丢到事件循环列表(poll queue)中，程序安安稳稳跑完，事件就不断被遍历执行，因为其丢到了队列里，所以不会阻塞程序的执行，所以有时候你的程序看起来执行顺序有点迷，比如有两个函数AB，按顺序调用AB，执行时却发现B先执行，A跟在了B屁股后面，这种事情你别问为什么，一问就发生：</p>
 <pre data-lang="lisp" class="language-lisp "><code class="language-lisp" data-lang="lisp">#lang racket
-(define 🐢 (displayln "🐢🐢🐢..."))
-(define 🐇 (displayln "🐇🐇🐇..."))
+(define 🐢 (displayln &quot;🐢🐢🐢...&quot;))
+(define 🐇 (displayln &quot;🐇🐇🐇...&quot;))
 🐢
 🐇
 </code></pre>
@@ -98,10 +98,10 @@
 <p> 大概是这样：</p>
 <pre data-lang="lisp" class="language-lisp "><code class="language-lisp" data-lang="lisp">#lang racket
 (define (🐇 str)
-  (displayln (format "我可以出发了 ~a" str)))
+  (displayln (format &quot;我可以出发了 ~a&quot; str)))
 (define (🐢 callback)
-  (displayln "🐢🐢🐢...")
-  (define    ZHANAN "🐇")
+  (displayln &quot;🐢🐢🐢...&quot;)
+  (define    ZHANAN &quot;🐇&quot;)
   (callback  ZHANAN    ))
 (🐢 🐇) ;;兔子作为参数传递给乌龟
 执行结果：
@@ -113,13 +113,13 @@
 <h4 id="0x01-mian-xiang-dui-xiang-x-han-shu-shi-bian-cheng-zhen-noxi-pi-shi">0x01: 面向对象 x 函数式编程 = 真の嬉皮士</h4>
 <p> 刚才我们谈论的是以函数传递给函数的方式实现过程抽象，以同样的功能为例，我们对比一下面向对象范式里的做法。在面向对象(👧)编程里，核心范式就是定义一类，然后给类加属性、加方法，一个最简单的例子是酱紫:</p>
 <pre data-lang="lisp" class="language-lisp "><code class="language-lisp" data-lang="lisp">#lang racket
-(require racket/class)
+(require racket&#x2F;class)
 (define dog-class%
   (class object%
-    (field (name "二哈")
+    (field (name &quot;二哈&quot;)
               (weight 10))
-    (define/public (eat)
-      (displayln (format "~a 又吃一顿变成了 ~a 斤"
+    (define&#x2F;public (eat)
+      (displayln (format &quot;~a 又吃一顿变成了 ~a 斤&quot;
                   name (* 2 weight))))
     (super-new)))
 (send (new dog-class%) eat)
@@ -129,36 +129,36 @@
 <p>new了一个对象(🐕)然后开始一连串执行里面的方法：</p>
 <pre data-lang="java" class="language-java "><code class="language-java" data-lang="java">class 🐶 extends 🐕
 
-🐶.eat("🌿")
-  .eat("🌰")
+🐶.eat(&quot;🌿&quot;)
+  .eat(&quot;🌰&quot;)
   .run(100)
   ...  
 </code></pre>
 <p> 而对于函数式编程，则是一层层地传递函数，函数返回的函数又传递给函数，挫一点的编程语言这样写(比如JS)：</p>
-<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">func1(func2(func3(func4(func5(func6("🐶"))))))
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">func1(func2(func3(func4(func5(func6(&quot;🐶&quot;))))))
 </code></pre>
 <p> 更加高级的函数式编程语言，比如elixir或者F#，会提供管道符(Pipe)操作:</p>
-<pre data-lang="elixir" class="language-elixir "><code class="language-elixir" data-lang="elixir">🐶|> func1
-  |> func2
-  |> func3
-  |> func4
+<pre data-lang="elixir" class="language-elixir "><code class="language-elixir" data-lang="elixir">🐶|&gt; func1
+  |&gt; func2
+  |&gt; func3
+  |&gt; func4
   ...
 </code></pre>
 <p> 是不是很优美咧～</p>
 <p> 在JS的世界中，我们得做嬉皮士，两种范式一起用！有时候传递的是类自身，有时候传递的是函数(命名函数 or lambda)，有时候都传，这种事情，最紧要解释器开心。我们举一个例子：</p>
 <pre data-lang="lisp" class="language-lisp "><code class="language-lisp" data-lang="lisp">#lang racket
-(require racket/class)
+(require racket&#x2F;class)
 (define dog-class%
   (class object%
-    (field (name "二哈")
+    (field (name &quot;二哈&quot;)
            (weight 10))
-    (define/public (in-class-func out-class-func)
-      (displayln "从类外部获取函数， 数据传递给函数")
+    (define&#x2F;public (in-class-func out-class-func)
+      (displayln &quot;从类外部获取函数， 数据传递给函数&quot;)
       (out-class-func name))
     (super-new)))
 ;;外部函数
 (define (my-func name)
-  (displayln (format "从类里面获得数据进行处理 ~a" name)))
+  (displayln (format &quot;从类里面获得数据进行处理 ~a&quot; name)))
 (send (new dog-class%) in-class-func my-func)
 ;;执行结果：
 从类外部获取函数， 数据传递给函数
@@ -166,7 +166,7 @@
 </code></pre>
 <p> 更进一步，我们还可以添加回调函数使得外部函数做了处理之后再传递回类里面做处理，然后再返回出来，一次往返一次爽，一直往返一直爽。</p>
 <pre data-lang="lisp" class="language-lisp "><code class="language-lisp" data-lang="lisp">(define (my-func name some-func)
-  (displayln (format "从类里面获得数据进行处理 ~a" name))
+  (displayln (format &quot;从类里面获得数据进行处理 ~a&quot; name))
   (some-func some-arg name))
 ...
 </code></pre>
