@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="Description" content="部署小哥.">
+
+    <title>(Re (S a n))</title>
+
+    <!-- Icon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/main.css">
+
+    <!-- Ext Chart -->
+    <link href="/static/c3.css" rel="stylesheet">
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="/static/c3.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5ZZLRFRNRH"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5ZZLRFRNRH');
+    </script>
+  </head>
+
+  <body>
+    <nav class="navbar" >
+    <div class="navbar-menu is-white is-active">
+        <div class="navbar-start">
+            <a class="navbar-item" href="/">
+                (Re (S a n))
+            </a>
+        </div>
+
+        <div class="navbar-end">
+            <a class="navbar-item" href="/blog">
+                博客
+            </a>
+            <a class="navbar-item" href="/daily">
+                每日
+            </a>
+            <a class="navbar-item" href="/photos">
+                相册
+            </a>
+            <a class="navbar-item" href="/books">
+                小册
+            </a>
+        </div>
+    </div>
+</nav>
+
+    <section class="section">
+      <div class="container">
+        
+<main class="posts">
+
+  <div class="posts-content">
+    <p><em>流水账.</em></p>
+
+  </div>
+  
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.06.05
+    </h2>
+    <div class="post-content">
+      <p><img src="/images/vaccine.png" alt="vaccine" /></p>
+<p> 因为最近疫情扩散，广州这边要进行全员核酸检测，今天我也准备去做一下核酸检测，一方面是响应号召，另一方面是为后面两天出行做准备。</p>
+<p> 然后我突然想起前阵子国家安排打 <em>COVID-19</em> 疫苗，我没去打。一方面是因为我在家办公，一直宅着，觉得没太大必要跟大伙儿抢；另一方面是我对 <em>COVID-19</em> 还是有些畏惧，因为内心觉得疫苗应该是要经过长期试验才能确保有效和安全。</p>
+<p> 今天稍微了解了一下疫苗技术，这里非常简单地总结一下我的理解，就当是小科普，感觉疫苗还是比较靠谱的。</p>
+<p><strong>第一代疫苗：</strong></p>
+<p> 就是把病毒性更弱的同源病毒，或者是直接灭活的病毒，注入到人体中，诱导人体产生特异性免疫应答，从而产生相应的疾病免疫能力。</p>
+<p> 第一代技术相对来说还是有些缺点，一方面是有一定的危险性，另一方面是产生的免疫功能不那么持久，所以每过一段时间又要来一次。</p>
+<p><strong>第二代疫苗：</strong></p>
+<p> 那第二代疫苗咋搞呢？第二代疫苗是直接把病毒特有的成分提取出来(比如某种蛋白质)，然后进行培育或者合成，再通过一些手段把这类物质注入人体，使人类的免疫系统对这类物质产生抗体即可，下次只要是这种病毒就会有这种物质，免疫系统就能识别出来，然后进行反击。</p>
+<p>  这里可以看出，不管是一代还是二代，都是利用人体识别病毒的蛋白质/蛋白质水解物来使得免疫系统识别，诱导产生的是<strong>体液免疫</strong>，所以缺点还是那个，时间久了免疫系统就忘了，得久不久来一阵。</p>
+<p><strong>第三代疫苗：</strong></p>
+<p> 从结论上来说，第三代疫苗是不需要直接从病毒身上提取成分(蛋白质/亚单位)，而是直接提取它的基因片段🧬，我们知道有这个基因片段就可以生成这个蛋白质了嘛，那这里就有两种方式了：</p>
+<ul>
+<li>重组病毒载体疫苗：得到病毒的🧬之后，搞一个没毒或者毒性很低的病毒(例如腺病毒)，让它带着🧬进去人体，然后它就会在人体里面大量合成病毒特有的成分(蛋白质/亚单位)，然后诱导免疫系统发生免疫应答，产生抗体。</li>
+<li>核酸疫苗(DNA、mRNA)：相对前一种，核酸疫苗就不需要载体了，直接把病毒的🧬搞到人体里面，人体的宿主细胞直接合成病毒特有的成分(蛋白质/亚单位)，然后诱导免疫系统发生免疫应答，从而产生抗体。那DNA疫苗和mRNA疫苗的区别是「DNA是先转录成mRNA再合成蛋白质，mRNA就直接合成蛋白质了」。（类似我们计算机世界里的编译和字节码转换，有点意思。）</li>
+</ul>
+<p> 突然想起高中生物老师，那时候有点懵懂地喜欢她，/羞。</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-06-05</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.06.04
+    </h2>
+    <div class="post-content">
+      <p> 今天意识到一个很严重的问题，这个问题在我身上持续了很长一段时间，也可能会持续存在很长时间！</p>
+<p> 这个问题就是我在工作中好像很久没有进入过 “心流”<sup><a href="https://zh.wikipedia.org/wiki/%E5%BF%83%E6%B5%81%E7%90%86%E8%AB%96">ref</a></sup>状态了。</p>
+<p> 我目前所供职的公司采用远程办公的形式，远程办公最明显的问题是员工的沟通问题，我们平时使用公司自己的一个IM类型产品进行工作交流，看起来没什么问题，就好像大家上班也会用企业微信、钉钉之类的。</p>
+<p>但是，如果是在远程办公的场景下，内部IM的消息是非常频繁的，这大量的消息里，大部分是跟自己无关的，你会忍不住一直处在 “waiting” 状态，因为你担心错过自己的消息而没来得及回复同事。</p>
+<p> 这种状态真是太糟糕了，我怎么一直都没有发现呢?</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-06-04</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.06.03
+    </h2>
+    <div class="post-content">
+      <p align="center">
+&emsp;虚度光阴 +1day
+</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-06-03</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.06.02
+    </h2>
+    <div class="post-content">
+      <p align="center">
+&emsp;虚度光阴 +1day
+</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-06-02</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.06.01
+    </h2>
+    <div class="post-content">
+      <p align="center">
+&emsp;虚度光阴 +1day
+</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-06-01</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.05.31
+    </h2>
+    <div class="post-content">
+      <p> 尽管每天都感觉很忙，但回头一想，却觉得啥也没干，每天就在这样的焦虑中度过。</p>
+<p> 为了解决这个问题，我决定学着做一下时间管理，就像我们工作那样，给自己写OKR、分Sprint、设置番茄钟。今天是第一天开始执行，为了响应这样的决定我还做了一些仪式感——在聊天群里设置自己的昵称为「升级中...」，暗示自己在新的六月要摆脱五月的颓势，重新起步。</p>
+<p> 然而万事开头难，中间难，最后更难。眼看着一个个番茄钟过去，我却不知道干什么，看看IM信息，协助一下同事工作，做一些根本进不了记忆的琐事，这一天就那么到头了！</p>
+<p> 我意识到时间管理之后，我还欠缺目标管理。说到底如果我没找到该做的事情的话，不打游戏挤出来的时间也会变成聊天看剧。所以接下来，必须得把该做的事情排一排才行。</p>
+<p><em>PS: 这说好要早睡的又不知不觉变成了12:38！！！</em></p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-31</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.05.28
+    </h2>
+    <div class="post-content">
+      <ol>
+<li>远离聊天工具，你的时间将成倍增长。</li>
+<li>远离凡尔赛（&amp; 阿兰德波顿所说的“那些势利鬼”）。</li>
+<li>做有意义的事情。</li>
+<li>果然真正的友谊实在难得啊。</li>
+</ol>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-28</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+  <div class="post-daily">
+    
+    <h2 class="post-title">
+      2021.05.27
+    </h2>
+    <div class="post-content">
+      <ol>
+<li>
+<p>萧瑟秋风今又是，换了人间。——《浪淘沙·北戴河》</p>
+<p>今天和一个刚认识不久的人在天台聊天，其间一会我看着夜空许久，突然想起小时候在家乡看的夜空。印象里那时候的夜空群星闪耀，月光皎洁，照得群山通明。现在别说小时候那种心境，就是这漫天星星好像也是很久没有见过了。也不知是因为宇宙膨胀，星星们离我们而去，还是因为我太久没静下心来看过夜空了，或许都有吧。</p>
+</li>
+<li>
+<p>你不要用战术上的勤奋掩盖战略上的懒惰 —— 雷军</p>
+<ul>
+<li>只要努力，你有能力，不管你什么学历都能找到好工作</li>
+<li>只要你足够优秀，她肯定会喜欢你的。</li>
+<li>只要你努力工作，足够勤奋，就会得到领导的赏识。</li>
+<li>xxxx</li>
+</ul>
+</li>
+</ol>
+<p> 诸如以上一些思维，伴随了我很长一段时间。所以到头来我只是努力，然后感动自己而已。无外乎一些人说所谓的成长就是认知的升级，我的认知等级还是太低了。</p>
+
+    </div>
+    <!--
+    <p class="subtitle"><strong>2021-05-27</strong></p>
+    <p class="subtitle"><strong>false</strong></p>
+    -->
+  </div>
+  
+
+
+  <nav class="pagination">
+    
+        <a class="previous" href="https:&#x2F;&#x2F;xulin.me&#x2F;daily&#x2F;page&#x2F;12&#x2F;">⎝</a>
+    
+        <span class="current-idx"> 13</span> 
+    
+        <a class="next" href="https:&#x2F;&#x2F;xulin.me&#x2F;daily&#x2F;page&#x2F;14&#x2F;">⎠</a>
+    
+  </nav>
+
+  <!--
+  <nav class="pagination is-rounded is-small" role="navigation" aria-label="pagination">
+    
+    <a class="pagination-previous" href="https:&#x2F;&#x2F;xulin.me&#x2F;daily&#x2F;page&#x2F;12&#x2F;">Previous</a>
+    
+
+    <ul class="pagination-list">
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 1">1</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 2">2</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 3">3</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 4">4</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 5">5</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 6">6</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 7">7</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 8">8</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 9">9</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 10">10</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 11">11</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 12">12</a></li>
+      
+    
+      
+      <li><a class="pagination-link is-current" aria-label="Page 13" aria-current="page">13</a></li>
+      
+    
+      
+      <li><a class="pagination-link" aria-label="Goto page 14">14</a></li>
+      
+    
+    </ul>
+
+    
+    <a class="pagination-next" href="https:&#x2F;&#x2F;xulin.me&#x2F;daily&#x2F;page&#x2F;14&#x2F;">Next page</a>
+    
+  </nav>
+-->
+</main>
+
+
+      </div>
+    </section>
+  </body>
+  <footer class="footer">
+    <div class="footer__inner">
+        <div class="footer__content">
+            <a href="/about">ReSan 👾 1991</a>
+        </div>
+    </div>
+</footer>
+
+
+</html>
