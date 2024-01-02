@@ -1,72 +1,34 @@
-{% extends "base.html" %}
-{% import "macros.html" as macros %}
-
-{% block content %}
+{% extends "base.html" %} {% import "macros.html" as macros %} {% block content
+%}
 <main class="posts">
+    <div class="posts-content">{{ section.content | safe }}</div>
 
-  <div class="posts-content">
-    {{ section.content | safe }}
-  </div>
-  
-  {% for page in paginator.pages %}
-  <div class="post-daily">
-    {% if page.extra.stat %}
-    <div class="daily-stat">{{ page.extra.stat }}
-    </div>
-    {% endif %}
-    <h2 class="post-title">
-      {{ page.title }}
-    </h2>
-    <div class="post-content">
-      {{ page.content | safe }}
-    </div>
-    <!--
+    {% for page in paginator.pages %}
+    <div class="post-daily">
+        {% if page.extra.stat %}
+        <div class="daily-stat">{{ page.extra.stat }}</div>
+        {% endif %}
+        <h2 class="post-title">{{ page.title }}</h2>
+        <div class="post-content">{{ page.content | safe }}</div>
+        <!--
     <p class="subtitle"><strong>{{ page.date }}</strong></p>
     <p class="subtitle"><strong>{{ page.draft }}</strong></p>
-    -->
-  </div>
-  {% endfor %}
-
-
-  <nav class="pagination">
-    {% if paginator.previous %}
-        <a class="previous" href="{{ paginator.previous }}">⎝</a>
-    {% else %}
-        <span class="not-exist">⎝</span>
-    {% endif %}
-        <span class="current-idx"> {{ paginator.current_index }}</span> 
-    {% if paginator.next %}
-        <a class="next" href="{{ paginator.next }}">⎠</a>
-    {% else %}
-        <span class="not-exist">⎠</span>
-    {% endif %}
-  </nav>
-
-  <!--
-  <nav class="pagination is-rounded is-small" role="navigation" aria-label="pagination">
-    {% if paginator.previous %}
-    <a class="pagination-previous" href="{{ paginator.previous }}">Previous</a>
-    {% else %}
-    <a class="pagination-previous" disabled>Previous</a>
-    {% endif %}
-
-    <ul class="pagination-list">
-    {% for idx in range(start=1, end=(paginator.number_pagers + 1)) %}
-      {% if idx == paginator.current_index %}
-      <li><a class="pagination-link is-current" aria-label="Page {{ idx }}" aria-current="page">{{ idx }}</a></li>
-      {% else %}
-      <li><a class="pagination-link" aria-label="Goto page {{ idx }}">{{ idx }}</a></li>
-      {% endif %}
+    --></div>
     {% endfor %}
-    </ul>
 
-    {% if paginator.next %}
-    <a class="pagination-next" href="{{ paginator.next }}">Next page</a>
-    {% else %}
-    <a class="pagination-next" diabled>Next page</a>
-    {% endif %}
-  </nav>
--->
+    <nav class="pagination">
+        {% if paginator.previous %}
+        <a class="previous" href="{{ paginator.previous }}">⎝</a>
+        {% else %}
+        <span class="not-exist">⎝</span>
+        {% endif %}
+        <span class="current-idx"> {{ paginator.current_index }}</span>
+        {% if paginator.next %}
+        <a class="next" href="{{ paginator.next }}">⎠</a>
+        {% else %}
+        <span class="not-exist">⎠</span>
+        {% endif %}
+    </nav>
 </main>
 
 {% endblock content %}
