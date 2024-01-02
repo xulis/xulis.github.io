@@ -22,4 +22,4 @@ jobs:
         env:
           BUILD_DIR: docs
           PAGES_BRANCH: gh-pages
-          TOKEN: ${{ secrets.TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
