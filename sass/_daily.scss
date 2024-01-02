@@ -17,6 +17,19 @@
 //  transform: rotate(3deg);
 }
 
+.daily-date {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+
+  strong {
+    font-size: medium;
+    color: #908dc1;
+  }
+
+}
+
+
 .music-box {
   display: flex;
   justify-content: center;
@@ -43,5 +56,3 @@
     font-size: 1.725rem;
   }
 }
-
-
